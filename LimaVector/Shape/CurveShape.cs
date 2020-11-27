@@ -12,7 +12,7 @@ namespace LimaVector.Shape
         public Point[] GetPoints(Point startPoint, Point endPoint)
         {
             return null;
-            //hghgh
+            
         }
     }
 }
