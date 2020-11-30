@@ -56,10 +56,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shape\CurveShape.cs" />
     <Compile Include="Shape\IShape.cs" />
+    <Compile Include="Shape\IThreePointShape.cs" />
     <Compile Include="Shape\LineShape.cs" />
     <Compile Include="Shape\RectangleShape.cs" />
     <Compile Include="Shape\SquareShape.cs" />
     <Compile Include="Shape\TriangleShape.cs" />
+    <Compile Include="Shape\TriangleThreePoints.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

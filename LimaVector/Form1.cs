@@ -23,9 +23,11 @@ namespace LimaVector
         string mode;
         Point start;
 
-        //RectangleFigure reactangle;
+        List<Point> _clickedPoints = new List<Point>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
+        string _action = ""; //// поле в котором будет храниться текущее действие
 
         IShape shape;
+        IThreePointShape shapeThreePoints;
 
         public Form1()
         {
@@ -36,10 +38,10 @@ namespace LimaVector
         {
             mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
-            pen = new Pen(Color.Red, 5);
+            pen = new Pen(System.Drawing.Color.Red, 5);
             pictureBox1.Image = mainBitmap;
 
-            shape = new RectangleShape();
+            //shape = new RectangleShape();
 
 
         }
@@ -64,6 +66,31 @@ namespace LimaVector
         {
             point = e.Location;
             mD = true;
+
+            if (_action == "Triangle") // выбранный режим
+            {
+
+                _clickedPoints.Add(point); //добавлеем точку в лист (массив) , текущая точка которую кликнули
+                if (_clickedPoints.Count == 3) // счетчик точек
+                {
+                    // draw triangle here
+                    Point[] pts = shapeThreePoints.GetPoints(_clickedPoints[0], _clickedPoints[1], _clickedPoints[2]); // вызываем метод для трех точек которые были нажаты
+
+                    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
+                    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
+                    graphics.DrawPolygon(pen, pts);// соединяем точки
+                    pictureBox1.Image = tmpBitmap;
+                    GC.Collect();
+                    _clickedPoints.Clear();// чистим координаты точек
+                }
+                else // рисуем точки вершины треугольника до тех пор пока точек не станет 3
+                {
+                    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
+                    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
+                    graphics.DrawPolygon(pen, new Point[] { e.Location, new Point(e.Location.X - 1, e.Location.Y - 1) }); //передали точку и координаты точки -1, для того чтобы ее было видно ,
+                    pictureBox1.Image = tmpBitmap;
+                }
+            }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -74,21 +101,25 @@ namespace LimaVector
 
         private void Rectangle_Click(object sender, EventArgs e)
         {
+            _action = "Rectangle"; // выбираем режим
             shape = new RectangleShape();
         }
 
         private void Square_Click(object sender, EventArgs e)
         {
+            _action = "Square";
             shape = new SquareShape();
         }
 
         private void Line_Click(object sender, EventArgs e)
         {
+            _action = "Line";
             shape = new LineShape();
         }
 
         private void Triangel_Click(object sender, EventArgs e)
         {
+            _action = "RightTriangle";
             shape = new TriangleShape();
         }
 
@@ -100,6 +131,18 @@ namespace LimaVector
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             pen.Width = hScrollBar1.Value;
+        }
+
+        private void TriangleThreePoints_Click(object sender, EventArgs e)
+        {
+            _action = "Triangle";
+            shapeThreePoints = new TriangleThreePoints();
+        }
+
+        private void Color_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            pen.Color = colorDialog1.Color;
         }
     }
 }
