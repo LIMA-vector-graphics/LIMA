@@ -7,22 +7,23 @@ using System.Drawing;
 
 namespace LimaVector.Shape
 {
-    public class TriangleShape : IShape
+    public class TriangleThreePoints : IThreePointShape
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        public Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint)
         {
 
             Point[] points = new Point[3];
 
             points[0] = startPoint;
-            points[1] = new Point(startPoint.X, endPoint.Y);
+            points[1] = middlePoint;
             points[2] = endPoint;
 
-
             return points;
-
-
         }
 
+        public Point[] GetPoints(Point startPoint, Point endPoint)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

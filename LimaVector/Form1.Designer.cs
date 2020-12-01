@@ -39,6 +39,9 @@
             this.Polygon = new System.Windows.Forms.Button();
             this.RegularPolygon = new System.Windows.Forms.Button();
             this.numberOfVertices = new System.Windows.Forms.NumericUpDown();
+            this.Color = new System.Windows.Forms.Button();
+            this.TriangleThreePoints = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfVertices)).BeginInit();
             this.SuspendLayout();
@@ -46,10 +49,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox1.Location = new System.Drawing.Point(92, 45);
+            this.pictureBox1.Location = new System.Drawing.Point(115, 45);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(948, 535);
+            this.pictureBox1.Size = new System.Drawing.Size(881, 467);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
@@ -115,11 +118,11 @@
             // hScrollBar1
             // 
             this.hScrollBar1.LargeChange = 1;
-            this.hScrollBar1.Location = new System.Drawing.Point(272, 9);
+            this.hScrollBar1.Location = new System.Drawing.Point(705, 9);
             this.hScrollBar1.Maximum = 10;
             this.hScrollBar1.Minimum = 1;
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(170, 26);
+            this.hScrollBar1.Size = new System.Drawing.Size(154, 23);
             this.hScrollBar1.TabIndex = 6;
             this.hScrollBar1.Value = 1;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
@@ -162,15 +165,39 @@
             this.numberOfVertices.TabIndex = 10;
             this.numberOfVertices.ValueChanged += new System.EventHandler(this.numberOfVertices_ValueChanged);
             // 
+            // Color
+            // 
+            this.Color.Location = new System.Drawing.Point(168, 4);
+            this.Color.Margin = new System.Windows.Forms.Padding(2);
+            this.Color.Name = "Color";
+            this.Color.Size = new System.Drawing.Size(70, 37);
+            this.Color.TabIndex = 7;
+            this.Color.Text = "Color";
+            this.Color.UseVisualStyleBackColor = true;
+            this.Color.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // TriangleThreePoints
+            // 
+            this.TriangleThreePoints.Location = new System.Drawing.Point(18, 419);
+            this.TriangleThreePoints.Margin = new System.Windows.Forms.Padding(2);
+            this.TriangleThreePoints.Name = "TriangleThreePoints";
+            this.TriangleThreePoints.Size = new System.Drawing.Size(93, 68);
+            this.TriangleThreePoints.TabIndex = 8;
+            this.TriangleThreePoints.Text = "TriangleThreePoints";
+            this.TriangleThreePoints.UseVisualStyleBackColor = true;
+            this.TriangleThreePoints.Click += new System.EventHandler(this.TriangleThreePoints_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1051, 601);
+            this.ClientSize = new System.Drawing.Size(1006, 523);
             this.Controls.Add(this.numberOfVertices);
             this.Controls.Add(this.RegularPolygon);
             this.Controls.Add(this.Polygon);
             this.Controls.Add(this.Ellipse);
+            this.Controls.Add(this.TriangleThreePoints);
+            this.Controls.Add(this.Color);
             this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.Curve);
             this.Controls.Add(this.Triangel);
@@ -201,6 +228,9 @@
         private System.Windows.Forms.Button Polygon;
         private System.Windows.Forms.Button RegularPolygon;
         private System.Windows.Forms.NumericUpDown numberOfVertices;
+        private System.Windows.Forms.Button Color;
+        private System.Windows.Forms.Button TriangleThreePoints;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

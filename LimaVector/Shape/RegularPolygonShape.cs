@@ -10,7 +10,6 @@ namespace LimaVector.Shape
     class RegularPolygonShape : IShape
     {
         int N;
-
         public RegularPolygonShape(int N)
         {
             this.N = N;
