@@ -19,9 +19,11 @@ namespace LimaVector
         Graphics graphics;
         Pen pen;
         Point point;
-        bool mD;
-        string mode;
         Point start;
+        Point next;
+        bool mD;
+        bool startEntered;
+        int NumberOfVertices;
 
         List<Point> _clickedPoints = new List<Point>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
         string _action = ""; //// поле в котором будет храниться текущее действие
@@ -43,12 +45,13 @@ namespace LimaVector
 
             //shape = new RectangleShape();
 
-
+            startEntered = false;
+            numberOfVertices.Value = 5;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mD)
+            if (mD && _action == "drag")
             {
                 tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
                 graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
@@ -58,10 +61,22 @@ namespace LimaVector
                 graphics.DrawPolygon(pen, shape.GetPoints(point, e.Location));
                 pictureBox1.Image = tmpBitmap;
                 GC.Collect();
-
             }
-        }
 
+            //
+            //if (mode == "polygon")
+            //{
+            //    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
+            //    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
+
+            //    //graphics.Clear(Color.White); // очищаем имейджБокс от фигур создающихся по пути
+
+            //    graphics.DrawLine(pen, next, e.Location);
+            //    graphics.DrawLine(pen, e.Location, start);
+            //    pictureBox1.Image = tmpBitmap;
+            //    GC.Collect();
+            //}
+        }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             point = e.Location;
@@ -91,46 +106,99 @@ namespace LimaVector
                     pictureBox1.Image = tmpBitmap;
                 }
             }
+            if (_action == "drag")
+            {
+                point = e.Location;
+                mD = true;
+            }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            mD = false;
-            mainBitmap = tmpBitmap;
+            if (_action == "drag")
+            {
+                mD = false;
+                mainBitmap = tmpBitmap;
+            }
         }
 
         private void Rectangle_Click(object sender, EventArgs e)
         {
-            _action = "Rectangle"; // выбираем режим
+            _action = "drag";
             shape = new RectangleShape();
         }
 
         private void Square_Click(object sender, EventArgs e)
         {
-            _action = "Square";
+            _action = "drag";
             shape = new SquareShape();
         }
 
         private void Line_Click(object sender, EventArgs e)
         {
-            _action = "Line";
+            _action = "drag";
             shape = new LineShape();
         }
 
         private void Triangel_Click(object sender, EventArgs e)
         {
-            _action = "RightTriangle";
+            _action = "drag";
             shape = new TriangleShape();
         }
 
         private void Curve_Click(object sender, EventArgs e)
         {
-
+            // shape = new CurveShape();
         }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             pen.Width = hScrollBar1.Value;
+        }
+
+        private void Ellipse_Click(object sender, EventArgs e)
+        {
+            _action = "drag";
+            shape = new EllipseShape();
+        }
+
+        private void Polygon_Click(object sender, EventArgs e)
+        {
+            //shape = new PolygonShape();
+            _action = "polygon";
+        }
+    
+
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(_action == "polygon")
+            {
+                if (!startEntered)
+                {
+                    start = e.Location;
+                    startEntered = true;
+                    graphics = Graphics.FromImage(mainBitmap);
+                    next = start;
+                }
+                else
+                {
+                    graphics.DrawLine(pen, next, e.Location);
+                    next = e.Location;
+                    pictureBox1.Image = mainBitmap;
+                }
+            }
+        }
+        private void RegularPolygon_Click(object sender, EventArgs e)
+        {
+            _action = "drag";
+            shape = new RegularPolygonShape(NumberOfVertices);
+        }
+
+        private void numberOfVertices_ValueChanged(object sender, EventArgs e)
+        {
+            NumberOfVertices = Convert.ToInt32(numberOfVertices.Value);
+            shape = new RegularPolygonShape(NumberOfVertices);
         }
 
         private void TriangleThreePoints_Click(object sender, EventArgs e)
@@ -145,4 +213,6 @@ namespace LimaVector
             pen.Color = colorDialog1.Color;
         }
     }
+
+
 }
