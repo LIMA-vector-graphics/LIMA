@@ -10,6 +10,5 @@ namespace LimaVector.Shape
     public interface IShape
     {
         Point[] GetPoints(Point startPoint, Point endPoint);
-
     }
 }

@@ -28,6 +28,7 @@ namespace LimaVector
         List<Point> _clickedPoints = new List<Point>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
         string _action = ""; //// поле в котором будет храниться текущее действие
 
+        Painter painter;
         IShape shape;
         IThreePointShape shapeThreePoints;
 
@@ -39,11 +40,11 @@ namespace LimaVector
         private void Form1_Load(object sender, EventArgs e)
         {
             mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-
+            
             pen = new Pen(System.Drawing.Color.Red, 5);
             pictureBox1.Image = mainBitmap;
 
-            //shape = new RectangleShape();
+            shape = new RectangleShape();
 
             startEntered = false;
             numberOfVertices.Value = 5;
@@ -53,29 +54,11 @@ namespace LimaVector
         {
             if (mD && _action == "drag")
             {
-                tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
-                graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
-
-                //graphics.Clear(Color.White); // очищаем имейджБокс от фигур создающихся по пути
-
-                graphics.DrawPolygon(pen, shape.GetPoints(point, e.Location));
-                pictureBox1.Image = tmpBitmap;
+                tmpBitmap = (Bitmap) mainBitmap.Clone();
+                painter = new Painter(shape, pen, tmpBitmap);
+                pictureBox1.Image = painter.Paint(point, e.Location);
                 GC.Collect();
             }
-
-            //
-            //if (mode == "polygon")
-            //{
-            //    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
-            //    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
-
-            //    //graphics.Clear(Color.White); // очищаем имейджБокс от фигур создающихся по пути
-
-            //    graphics.DrawLine(pen, next, e.Location);
-            //    graphics.DrawLine(pen, e.Location, start);
-            //    pictureBox1.Image = tmpBitmap;
-            //    GC.Collect();
-            //}
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
