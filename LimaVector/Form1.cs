@@ -24,6 +24,7 @@ namespace LimaVector
         bool mD;
         bool startEntered;
         int NumberOfVertices;
+        PolygonShape polygon;
 
         List<Point> _clickedPoints = new List<Point>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
         string _action = ""; //// поле в котором будет храниться текущее действие
@@ -155,22 +156,31 @@ namespace LimaVector
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if(_action == "polygon")
+            if(_action == "Polygon")
             {
-                if (!startEntered)
+               
+
+                if (polygon.NumberOfVertices == 0)
                 {
-                    start = e.Location;
-                    startEntered = true;
+                    polygon.Vertices.Add(e.Location);
+
                     graphics = Graphics.FromImage(mainBitmap);
-                    next = start;
+                    polygon.NumberOfVertices++;
+
                 }
                 else
                 {
-                    graphics.DrawLine(pen, next, e.Location);
-                    next = e.Location;
+                    graphics = Graphics.FromImage(mainBitmap);
+                    graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices-1], e.Location);
+                    polygon.NumberOfVertices++;
+                    polygon.Vertices.Add(e.Location);//записали в массив новую точку 
+
+                   
                     pictureBox1.Image = mainBitmap;
                 }
             }
+
+            
         }
         private void RegularPolygon_Click(object sender, EventArgs e)
         {
@@ -194,6 +204,30 @@ namespace LimaVector
         {
             colorDialog1.ShowDialog();
             pen.Color = colorDialog1.Color;
+        }
+
+        private void Polygon_Click_1(object sender, EventArgs e)
+        {
+            _action = "Polygon";
+            polygon = new PolygonShape();
+
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //tmpBitmap = (Bitmap)mainBitmap.Clone();
+            graphics = Graphics.FromImage(mainBitmap);
+            graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
+            graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
+            polygon.NumberOfVertices = 0;
+            polygon.Vertices.Clear();
+            pictureBox1.Image = mainBitmap;
+        }
+
+        private void ClearAll_Click(object sender, EventArgs e)
+        {
+            mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            pictureBox1.Image = mainBitmap;
         }
     }
 
