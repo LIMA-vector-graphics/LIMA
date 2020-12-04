@@ -7,12 +7,11 @@ using System.Drawing;
 
 namespace LimaVector.Shape
 {
-    public class CurveShape : IShape
+    public class CurveShape : AShape
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        public override void UpdateVertices(Point startPoint, Point endPoint)
         {
-            return null;
-            //jjjj
+
         }
     }
 }

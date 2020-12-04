@@ -7,11 +7,14 @@ using System.Drawing;
 
 namespace LimaVector.Shape
 {
-    public class LineShape : IShape
+    public class LineShape : AShape
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        override public void UpdateVertices(Point startPoint, Point endPoint)
         {
-            return new Point[] { startPoint, endPoint };
+            GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
+            Vertices = new List<Point>();
+            Vertices.Add(startPoint);
+            Vertices.Add(endPoint);
         }
     }
 }
