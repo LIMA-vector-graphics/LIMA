@@ -8,8 +8,8 @@ using System.Windows.Forms;
 
 namespace LimaVector.Shape
 {
-    public interface IThreePointShape : IShape
+    public abstract class IThreePointShape : AShape
     {
-        Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint);
+        public abstract Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint);
     }
 }

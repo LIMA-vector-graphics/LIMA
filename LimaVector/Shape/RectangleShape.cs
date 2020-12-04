@@ -7,19 +7,19 @@ using System.Drawing;
 
 namespace LimaVector.Shape
 {
-    public class RectangleShape : IShape
+    public class RectangleShape : AShape
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        override public void UpdateVertices(Point startPoint, Point endPoint)
         {
+
+            GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
             // обсчет точек прямоугольника
-
-            Point[] points = new Point[4];
-            points[0] = startPoint;
-            points[1] = new Point(startPoint.X, endPoint.Y);
-            points[2] = endPoint;
-            points[3] = new Point(endPoint.X, startPoint.Y);
-
-            return points;
+            Vertices = new List<Point>() {
+                startPoint,
+                new Point(startPoint.X, endPoint.Y),
+                endPoint,
+                new Point(endPoint.X, startPoint.Y)
+            };
         }
 
     }

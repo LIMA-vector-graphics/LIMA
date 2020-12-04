@@ -7,19 +7,17 @@ using System.Drawing;
 
 namespace LimaVector.Shape
 {
-    public class TriangleShape : IShape
+    public class TriangleShape : AShape
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        override public void UpdateVertices(Point startPoint, Point endPoint)
         {
 
-            Point[] points = new Point[3];
-
-            points[0] = startPoint;
-            points[1] = new Point(startPoint.X, endPoint.Y);
-            points[2] = endPoint;
-
-
-            return points;
+            GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
+            Vertices = new List<Point>() {
+                startPoint,
+                new Point(startPoint.X, endPoint.Y),
+                endPoint
+            };
 
 
         }
