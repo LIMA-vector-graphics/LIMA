@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace LimaVector.Shape
 {
-    class PolygonShape : IShape
+    class PolygonShape : AShape
     {
-        public List<Point> Vertices; 
 
         public int NumberOfVertices;
 
@@ -20,7 +19,7 @@ namespace LimaVector.Shape
         }
 
 
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        override public void UpdateVertices(Point startPoint, Point endPoint)
         {
             throw new NotImplementedException();
         }

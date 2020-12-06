@@ -7,23 +7,25 @@ using System.Drawing;
 
 namespace LimaVector.Shape
 {
-    public class SquareShape : IShape
+    public class SquareShape : AShape
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        override public void UpdateVertices(Point startPoint, Point endPoint)
         {
+
+            GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
             int a = Math.Abs(startPoint.X - endPoint.X); //считаем длинну грани квадрата. получили длинну границы
             if (startPoint.Y > endPoint.Y)
             {
                 a = -a;
             }
             // обсчет точек квадрата
-            Point[] points = new Point[4];
-            points[0] = startPoint;
-            points[1] = new Point(startPoint.X, startPoint.Y + a);
-            points[2] = new Point(endPoint.X, startPoint.Y + a);
-            points[3] = new Point(endPoint.X, startPoint.Y);
+            Vertices = new List<Point>() {
+                startPoint,
+                new Point(startPoint.X, startPoint.Y + a),
+                new Point(endPoint.X, startPoint.Y + a),
+                new Point(endPoint.X, startPoint.Y)
+            };
 
-            return points;
         }
 
     }
