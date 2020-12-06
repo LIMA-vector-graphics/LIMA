@@ -9,6 +9,16 @@ namespace LimaVector.Shape
 {
     public class TriangleThreePoints : IThreePointShape
     {
+
+        public List<Point> Vertices;
+
+        public int NumberOfVertices;
+
+        public TriangleThreePoints()
+        {
+            Vertices = new List<Point>();
+            NumberOfVertices = 0;
+        }
         override public Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint)
         {
 

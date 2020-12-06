@@ -17,18 +17,27 @@ namespace LimaVector
         Point point;
         Point start;
         Point next;
+        int counter;
+
         bool mD;
-        bool startEntered;
+      
         int NumberOfVertices;
         PolygonShape polygon;
+   
+        TriangleThreePoints triangleThreePoints; //создали объект класса
+       
+
         IFabric fabric;
         List<AShape> shapes;
+
 
         List<Point> _clickedPoints = new List<Point>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
         string _action = ""; //// поле в котором будет храниться текущее действие
 
+
         AShape currentShape;
         IThreePointShape shapeThreePoints;
+
 
         public Form1()
         {
@@ -42,7 +51,6 @@ namespace LimaVector
             
             pen = new Pen(System.Drawing.Color.Red, 5);
             pictureBox1.Image = mainBitmap;
-
             startEntered = false;
             numberOfVertices.Value = 5;
         }
@@ -77,6 +85,22 @@ namespace LimaVector
                         break;
                 }
             }
+            if (mD && _action == "Triangle")
+            {
+                if (triangleThreePoints.NumberOfVertices != 0)
+                {
+                    tmpBitmap = (Bitmap)mainBitmap.Clone();
+                    graphics = Graphics.FromImage(tmpBitmap);
+                    graphics.DrawLine(pen, point, e.Location);
+
+                    if (triangleThreePoints.NumberOfVertices == 2)
+                    {
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
+                    }
+                    pictureBox1.Image = tmpBitmap;
+                    GC.Collect();
+                }
+            }
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -88,28 +112,33 @@ namespace LimaVector
 
             if (_action == "Triangle") // выбранный режим
             {
-
-                _clickedPoints.Add(point); //добавлеем точку в лист (массив) , текущая точка которую кликнули
-                if (_clickedPoints.Count == 3) // счетчик точек
+                switch (triangleThreePoints.NumberOfVertices)
                 {
-                    // draw triangle here
-                    Point[] pts = shapeThreePoints.GetPoints(_clickedPoints[0], _clickedPoints[1], _clickedPoints[2]); // вызываем метод для трех точек которые были нажаты
+                    case 0:
+                        triangleThreePoints.Vertices.Add(e.Location);
+                        triangleThreePoints.NumberOfVertices=1;
+                        break;
+                    
+                    case 1:
+                        triangleThreePoints.Vertices.Add(e.Location); // добавили точку в вершину
+                        graphics = Graphics.FromImage(mainBitmap);
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
+                        triangleThreePoints.NumberOfVertices=2;
+                        pictureBox1.Image = mainBitmap;
+                        break;
 
-                    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
-                    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
-                    graphics.DrawPolygon(pen, pts);// соединяем точки
-                    pictureBox1.Image = tmpBitmap;
-                    GC.Collect();
-                    _clickedPoints.Clear();// чистим координаты точек
+                    case 2:
+                        graphics = Graphics.FromImage(mainBitmap);
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[1], e.Location);
+                        pictureBox1.Image = mainBitmap;
+                        triangleThreePoints.NumberOfVertices = 0;
+                        triangleThreePoints.Vertices.Clear();
+                        break;
                 }
-                else // рисуем точки вершины треугольника до тех пор пока точек не станет 3
-                {
-                    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
-                    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
-                    graphics.DrawPolygon(pen, new Point[] { e.Location, new Point(e.Location.X - 1, e.Location.Y - 1) }); //передали точку и координаты точки -1, для того чтобы ее было видно ,
-                    pictureBox1.Image = tmpBitmap;
-                }
+  
             }
+
             if (_action == "drag")
             {
                 point = e.Location;
@@ -165,6 +194,11 @@ namespace LimaVector
                     pictureBox1.Image = mainBitmap;
                 }
             }
+
+            if (_action == "Triangle")
+            {
+
+            }
         }
 
         private void Rectangle_Click(object sender, EventArgs e)
@@ -207,20 +241,35 @@ namespace LimaVector
             fabric = new EllipseFabric();
         }
 
-        private void Polygon_Click(object sender, EventArgs e)
+        private void BrokenLine_Click(object sender, EventArgs e)
         {
-            //shape = new PolygonShape();
             _action = "polygon";
         }
 
         private void Polygon_Click_1(object sender, EventArgs e)
         {
-            _action = "Polygon";
-            fabric = new PolygonFabric();
+
+            if(_action == "Polygon")
+            {
+                if (polygon.NumberOfVertices == 0)
+                {
+                    polygon.Vertices.Add(e.Location);
+                    graphics = Graphics.FromImage(mainBitmap);
+                    polygon.NumberOfVertices++;
+                }
+                else
+                {
+                    graphics = Graphics.FromImage(mainBitmap);
+                    graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices-1], e.Location);
+                    polygon.NumberOfVertices++;
+                    polygon.Vertices.Add(e.Location);//записали в массив новую точку 
+                    pictureBox1.Image = mainBitmap;
+                }
+            }
+            //_action = "Polygon";
+            //fabric = new PolygonFabric();
 
         }
-
-
         private void RegularPolygon_Click(object sender, EventArgs e)
         {
             _action = "drag";
@@ -236,7 +285,7 @@ namespace LimaVector
         private void TriangleThreePoints_Click(object sender, EventArgs e)
         {
             _action = "Triangle";
-            shapeThreePoints = new TriangleThreePoints();
+            triangleThreePoints = new TriangleThreePoints();// создаем новый экземпляр класса
         }
 
         private void Color_Click(object sender, EventArgs e)
@@ -248,13 +297,16 @@ namespace LimaVector
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //tmpBitmap = (Bitmap)mainBitmap.Clone();
-            graphics = Graphics.FromImage(mainBitmap);
-            graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-            graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
-            polygon.NumberOfVertices = 0;
-            polygon.Vertices.Clear();
-            pictureBox1.Image = mainBitmap;
+            if (_action == "Polygon")
+            {
+                graphics = Graphics.FromImage(mainBitmap);
+                graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
+                graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
+                polygon.NumberOfVertices = 0;
+                polygon.Vertices.Clear();
+                pictureBox1.Image = mainBitmap;
+            }
+
         }
 
         private void ClearAll_Click(object sender, EventArgs e)

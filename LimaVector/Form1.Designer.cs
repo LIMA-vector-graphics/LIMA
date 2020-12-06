@@ -36,7 +36,7 @@
             this.Curve = new System.Windows.Forms.Button();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.Ellipse = new System.Windows.Forms.Button();
-            this.BrikenLine = new System.Windows.Forms.Button();
+            this.BrokenLine = new System.Windows.Forms.Button();
             this.RegularPolygon = new System.Windows.Forms.Button();
             this.numberOfVertices = new System.Windows.Forms.NumericUpDown();
             this.Color = new System.Windows.Forms.Button();
@@ -134,7 +134,9 @@
             // 
             // Ellipse
             // 
+
             this.Ellipse.Location = new System.Drawing.Point(18, 253);
+
             this.Ellipse.Name = "Ellipse";
             this.Ellipse.Size = new System.Drawing.Size(58, 40);
             this.Ellipse.TabIndex = 7;
@@ -142,19 +144,24 @@
             this.Ellipse.UseVisualStyleBackColor = true;
             this.Ellipse.Click += new System.EventHandler(this.Ellipse_Click);
             // 
-            // BrikenLine
+            // BrokenLine
             // 
-            this.BrikenLine.Location = new System.Drawing.Point(18, 300);
-            this.BrikenLine.Name = "BrikenLine";
-            this.BrikenLine.Size = new System.Drawing.Size(58, 39);
-            this.BrikenLine.TabIndex = 8;
-            this.BrikenLine.Text = "BrikenLine";
-            this.BrikenLine.UseVisualStyleBackColor = true;
-            this.BrikenLine.Click += new System.EventHandler(this.Polygon_Click);
+
+            this.BrokenLine.Location = new System.Drawing.Point(24, 369);
+            this.BrokenLine.Margin = new System.Windows.Forms.Padding(4);
+            this.BrokenLine.Name = "BrokenLine";
+            this.BrokenLine.Size = new System.Drawing.Size(77, 48);
+            this.BrokenLine.TabIndex = 8;
+            this.BrokenLine.Text = "Broken Line";
+            this.BrokenLine.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.BrokenLine.UseVisualStyleBackColor = true;
+            this.BrokenLine.Click += new System.EventHandler(this.BrokenLine_Click);
             // 
             // RegularPolygon
             // 
-            this.RegularPolygon.Location = new System.Drawing.Point(18, 346);
+            this.RegularPolygon.Location = new System.Drawing.Point(24, 426);
+            this.RegularPolygon.Margin = new System.Windows.Forms.Padding(4);
+
             this.RegularPolygon.Name = "RegularPolygon";
             this.RegularPolygon.Size = new System.Drawing.Size(58, 42);
             this.RegularPolygon.TabIndex = 9;
@@ -164,6 +171,8 @@
             // 
             // numberOfVertices
             // 
+
+
             this.numberOfVertices.Location = new System.Drawing.Point(18, 394);
             this.numberOfVertices.Name = "numberOfVertices";
             this.numberOfVertices.Size = new System.Drawing.Size(58, 20);
@@ -247,7 +256,7 @@
             this.Controls.Add(this.Polygon);
             this.Controls.Add(this.numberOfVertices);
             this.Controls.Add(this.RegularPolygon);
-            this.Controls.Add(this.BrikenLine);
+            this.Controls.Add(this.BrokenLine);
             this.Controls.Add(this.Ellipse);
             this.Controls.Add(this.TriangleThreePoints);
             this.Controls.Add(this.Color);
@@ -278,7 +287,7 @@
         private System.Windows.Forms.Button Curve;
         private System.Windows.Forms.HScrollBar hScrollBar1;
         private System.Windows.Forms.Button Ellipse;
-        private System.Windows.Forms.Button BrikenLine;
+        private System.Windows.Forms.Button BrokenLine;
         private System.Windows.Forms.Button RegularPolygon;
         private System.Windows.Forms.NumericUpDown numberOfVertices;
         private System.Windows.Forms.Button Color;
