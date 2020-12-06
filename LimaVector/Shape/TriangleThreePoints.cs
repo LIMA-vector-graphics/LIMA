@@ -9,7 +9,16 @@ namespace LimaVector.Shape
 {
     public class TriangleThreePoints : IThreePointShape
     {
-        public Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint)
+        public List<Point> Vertices;
+
+        public int NumberOfVertices;
+
+        public TriangleThreePoints()
+        {
+            Vertices = new List<Point>();
+            NumberOfVertices = 0;
+        }
+    public Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint)
         {
 
             Point[] points = new Point[3];
@@ -21,6 +30,7 @@ namespace LimaVector.Shape
             return points;
         }
 
+       
         public Point[] GetPoints(Point startPoint, Point endPoint)
         {
             throw new NotImplementedException();
