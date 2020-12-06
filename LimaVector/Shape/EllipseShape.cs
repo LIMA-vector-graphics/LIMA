@@ -13,9 +13,9 @@ namespace LimaVector.Shape
         {
             int N = 360;
             Vertices = new List<Point>();
-            GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y)/2) ;
+            GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y)/2);
             Point center = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
-            Point delta = new Point((endPoint.X - startPoint.X) / 2, (endPoint.Y - startPoint.Y ) / 2);
+            Point delta = new Point(endPoint.X - startPoint.X, endPoint.Y - startPoint.Y);
             int radiusX = delta.X / 2;
             int radiusY = delta.Y / 2;
 

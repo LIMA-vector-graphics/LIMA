@@ -21,7 +21,7 @@ namespace LimaVector.Shape
             GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
             Vertices = new List<Point>();
             Point center = GravityCenter;
-            Point delta = new Point((endPoint.X - startPoint.X) / 2, (endPoint.Y - startPoint.Y) / 2);
+            Point delta = new Point(endPoint.X - startPoint.X, endPoint.Y - startPoint.Y);
             double radius = (int) Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
             double phase = Math.PI + Math.Atan2(delta.Y, delta.X);
 

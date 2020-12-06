@@ -24,14 +24,16 @@ namespace LimaVector.Shape
             for(int i=0; i < Vertices.Count(); i++)
             {
                 Point vertice = Vertices[i];
+                PointF delta = new Point(vertice.X - GravityCenter.X, vertice.Y - GravityCenter.Y);
                 Vertices[i] = new Point(
-                    (int)(vertice.X * Math.Cos(phi) - vertice.Y * Math.Sin(phi)),
-                    (int)(vertice.X * Math.Cos(phi) - vertice.Y * Math.Sin(phi))
+                    (int)(GravityCenter.X + delta.X * Math.Cos(phi) - delta.Y * Math.Sin(phi)),
+                    (int)(GravityCenter.Y + delta.X * Math.Sin(phi) + delta.Y * Math.Cos(phi))
                 );
             }
         }
         public void Move(Point delta)
         {
+            GravityCenter = new Point(GravityCenter.X + delta.X, GravityCenter.Y + delta.Y);
             for (int i = 0; i < Vertices.Count(); i++)
             {
                 Point vertice = Vertices[i];

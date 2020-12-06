@@ -46,6 +46,7 @@
             this.ClearAll = new System.Windows.Forms.Button();
             this.Rotate = new System.Windows.Forms.Button();
             this.Move = new System.Windows.Forms.Button();
+            this.Fractal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfVertices)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +57,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(115, 45);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(881, 467);
+            this.pictureBox1.Size = new System.Drawing.Size(1073, 617);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
@@ -236,11 +237,22 @@
             this.Move.UseVisualStyleBackColor = true;
             this.Move.Click += new System.EventHandler(this.Move_Click);
             // 
+            // Fractal
+            // 
+            this.Fractal.Location = new System.Drawing.Point(18, 493);
+            this.Fractal.Name = "Fractal";
+            this.Fractal.Size = new System.Drawing.Size(75, 23);
+            this.Fractal.TabIndex = 15;
+            this.Fractal.Text = "Fractal";
+            this.Fractal.UseVisualStyleBackColor = true;
+            this.Fractal.Click += new System.EventHandler(this.Fractal_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 523);
+            this.ClientSize = new System.Drawing.Size(1195, 695);
+            this.Controls.Add(this.Fractal);
             this.Controls.Add(this.Move);
             this.Controls.Add(this.Rotate);
             this.Controls.Add(this.ClearAll);
@@ -288,6 +300,7 @@
         private System.Windows.Forms.Button ClearAll;
         private System.Windows.Forms.Button Rotate;
         private System.Windows.Forms.Button Move;
+        private System.Windows.Forms.Button Fractal;
     }
 }
 
