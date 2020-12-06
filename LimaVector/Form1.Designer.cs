@@ -53,10 +53,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox1.Location = new System.Drawing.Point(115, 45);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(153, 55);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(881, 467);
+            this.pictureBox1.Size = new System.Drawing.Size(1175, 575);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
@@ -67,10 +67,10 @@
             // 
             // Rectangle
             // 
-            this.Rectangle.Location = new System.Drawing.Point(18, 45);
-            this.Rectangle.Margin = new System.Windows.Forms.Padding(2);
+            this.Rectangle.Location = new System.Drawing.Point(24, 55);
+            this.Rectangle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Rectangle.Name = "Rectangle";
-            this.Rectangle.Size = new System.Drawing.Size(70, 37);
+            this.Rectangle.Size = new System.Drawing.Size(93, 46);
             this.Rectangle.TabIndex = 1;
             this.Rectangle.Text = "Rectangle";
             this.Rectangle.UseVisualStyleBackColor = true;
@@ -78,10 +78,10 @@
             // 
             // Square
             // 
-            this.Square.Location = new System.Drawing.Point(18, 86);
-            this.Square.Margin = new System.Windows.Forms.Padding(2);
+            this.Square.Location = new System.Drawing.Point(24, 106);
+            this.Square.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Square.Name = "Square";
-            this.Square.Size = new System.Drawing.Size(58, 37);
+            this.Square.Size = new System.Drawing.Size(77, 46);
             this.Square.TabIndex = 2;
             this.Square.Text = "Square";
             this.Square.UseVisualStyleBackColor = true;
@@ -89,10 +89,10 @@
             // 
             // Line
             // 
-            this.Line.Location = new System.Drawing.Point(18, 128);
-            this.Line.Margin = new System.Windows.Forms.Padding(2);
+            this.Line.Location = new System.Drawing.Point(24, 158);
+            this.Line.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Line.Name = "Line";
-            this.Line.Size = new System.Drawing.Size(58, 37);
+            this.Line.Size = new System.Drawing.Size(77, 46);
             this.Line.TabIndex = 3;
             this.Line.Text = "Line";
             this.Line.UseVisualStyleBackColor = true;
@@ -100,10 +100,10 @@
             // 
             // Triangel
             // 
-            this.Triangel.Location = new System.Drawing.Point(18, 169);
-            this.Triangel.Margin = new System.Windows.Forms.Padding(2);
+            this.Triangel.Location = new System.Drawing.Point(24, 208);
+            this.Triangel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Triangel.Name = "Triangel";
-            this.Triangel.Size = new System.Drawing.Size(58, 37);
+            this.Triangel.Size = new System.Drawing.Size(77, 46);
             this.Triangel.TabIndex = 4;
             this.Triangel.Text = "Triangel";
             this.Triangel.UseVisualStyleBackColor = true;
@@ -111,10 +111,10 @@
             // 
             // Curve
             // 
-            this.Curve.Location = new System.Drawing.Point(18, 210);
-            this.Curve.Margin = new System.Windows.Forms.Padding(2);
+            this.Curve.Location = new System.Drawing.Point(24, 258);
+            this.Curve.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Curve.Name = "Curve";
-            this.Curve.Size = new System.Drawing.Size(58, 37);
+            this.Curve.Size = new System.Drawing.Size(77, 46);
             this.Curve.TabIndex = 5;
             this.Curve.Text = "Curve";
             this.Curve.UseVisualStyleBackColor = true;
@@ -123,22 +123,21 @@
             // hScrollBar1
             // 
             this.hScrollBar1.LargeChange = 1;
-            this.hScrollBar1.Location = new System.Drawing.Point(705, 9);
+            this.hScrollBar1.Location = new System.Drawing.Point(940, 11);
             this.hScrollBar1.Maximum = 10;
             this.hScrollBar1.Minimum = 1;
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(154, 23);
+            this.hScrollBar1.Size = new System.Drawing.Size(205, 23);
             this.hScrollBar1.TabIndex = 6;
             this.hScrollBar1.Value = 1;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // Ellipse
             // 
-
-            this.Ellipse.Location = new System.Drawing.Point(18, 253);
-
+            this.Ellipse.Location = new System.Drawing.Point(24, 311);
+            this.Ellipse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Ellipse.Name = "Ellipse";
-            this.Ellipse.Size = new System.Drawing.Size(58, 40);
+            this.Ellipse.Size = new System.Drawing.Size(77, 49);
             this.Ellipse.TabIndex = 7;
             this.Ellipse.Text = "Ellipse";
             this.Ellipse.UseVisualStyleBackColor = true;
@@ -146,11 +145,10 @@
             // 
             // BrokenLine
             // 
-
-            this.BrokenLine.Location = new System.Drawing.Point(24, 369);
-            this.BrokenLine.Margin = new System.Windows.Forms.Padding(4);
+            this.BrokenLine.Location = new System.Drawing.Point(24, 461);
+            this.BrokenLine.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.BrokenLine.Name = "BrokenLine";
-            this.BrokenLine.Size = new System.Drawing.Size(77, 48);
+            this.BrokenLine.Size = new System.Drawing.Size(103, 59);
             this.BrokenLine.TabIndex = 8;
             this.BrokenLine.Text = "Broken Line";
             this.BrokenLine.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -159,11 +157,10 @@
             // 
             // RegularPolygon
             // 
-            this.RegularPolygon.Location = new System.Drawing.Point(24, 426);
-            this.RegularPolygon.Margin = new System.Windows.Forms.Padding(4);
-
+            this.RegularPolygon.Location = new System.Drawing.Point(24, 369);
+            this.RegularPolygon.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.RegularPolygon.Name = "RegularPolygon";
-            this.RegularPolygon.Size = new System.Drawing.Size(58, 42);
+            this.RegularPolygon.Size = new System.Drawing.Size(77, 52);
             this.RegularPolygon.TabIndex = 9;
             this.RegularPolygon.Text = "Regular Polygon";
             this.RegularPolygon.UseVisualStyleBackColor = true;
@@ -171,20 +168,19 @@
             // 
             // numberOfVertices
             // 
-
-
-            this.numberOfVertices.Location = new System.Drawing.Point(18, 394);
+            this.numberOfVertices.Location = new System.Drawing.Point(23, 430);
+            this.numberOfVertices.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numberOfVertices.Name = "numberOfVertices";
-            this.numberOfVertices.Size = new System.Drawing.Size(58, 20);
+            this.numberOfVertices.Size = new System.Drawing.Size(77, 22);
             this.numberOfVertices.TabIndex = 10;
             this.numberOfVertices.ValueChanged += new System.EventHandler(this.numberOfVertices_ValueChanged);
             // 
             // Color
             // 
-            this.Color.Location = new System.Drawing.Point(168, 4);
-            this.Color.Margin = new System.Windows.Forms.Padding(2);
+            this.Color.Location = new System.Drawing.Point(224, 5);
+            this.Color.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Color.Name = "Color";
-            this.Color.Size = new System.Drawing.Size(70, 37);
+            this.Color.Size = new System.Drawing.Size(93, 46);
             this.Color.TabIndex = 7;
             this.Color.Text = "Color";
             this.Color.UseVisualStyleBackColor = true;
@@ -192,10 +188,10 @@
             // 
             // TriangleThreePoints
             // 
-            this.TriangleThreePoints.Location = new System.Drawing.Point(18, 419);
-            this.TriangleThreePoints.Margin = new System.Windows.Forms.Padding(2);
+            this.TriangleThreePoints.Location = new System.Drawing.Point(23, 527);
+            this.TriangleThreePoints.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TriangleThreePoints.Name = "TriangleThreePoints";
-            this.TriangleThreePoints.Size = new System.Drawing.Size(93, 68);
+            this.TriangleThreePoints.Size = new System.Drawing.Size(124, 84);
             this.TriangleThreePoints.TabIndex = 8;
             this.TriangleThreePoints.Text = "TriangleThreePoints";
             this.TriangleThreePoints.UseVisualStyleBackColor = true;
@@ -203,10 +199,10 @@
             // 
             // Polygon
             // 
-            this.Polygon.Location = new System.Drawing.Point(18, 4);
-            this.Polygon.Margin = new System.Windows.Forms.Padding(2);
+            this.Polygon.Location = new System.Drawing.Point(24, 5);
+            this.Polygon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Polygon.Name = "Polygon";
-            this.Polygon.Size = new System.Drawing.Size(70, 37);
+            this.Polygon.Size = new System.Drawing.Size(93, 46);
             this.Polygon.TabIndex = 11;
             this.Polygon.Text = "Polygon";
             this.Polygon.UseMnemonic = false;
@@ -215,10 +211,10 @@
             // 
             // ClearAll
             // 
-            this.ClearAll.Location = new System.Drawing.Point(250, 4);
-            this.ClearAll.Margin = new System.Windows.Forms.Padding(2);
+            this.ClearAll.Location = new System.Drawing.Point(333, 5);
+            this.ClearAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ClearAll.Name = "ClearAll";
-            this.ClearAll.Size = new System.Drawing.Size(70, 37);
+            this.ClearAll.Size = new System.Drawing.Size(93, 46);
             this.ClearAll.TabIndex = 12;
             this.ClearAll.Text = "ClearAll";
             this.ClearAll.UseMnemonic = false;
@@ -227,9 +223,10 @@
             // 
             // Rotate
             // 
-            this.Rotate.Location = new System.Drawing.Point(334, 4);
+            this.Rotate.Location = new System.Drawing.Point(445, 5);
+            this.Rotate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rotate.Name = "Rotate";
-            this.Rotate.Size = new System.Drawing.Size(75, 36);
+            this.Rotate.Size = new System.Drawing.Size(100, 44);
             this.Rotate.TabIndex = 13;
             this.Rotate.Text = "Rotate";
             this.Rotate.UseVisualStyleBackColor = true;
@@ -237,9 +234,10 @@
             // 
             // Move
             // 
-            this.Move.Location = new System.Drawing.Point(416, 4);
+            this.Move.Location = new System.Drawing.Point(555, 5);
+            this.Move.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Move.Name = "Move";
-            this.Move.Size = new System.Drawing.Size(65, 37);
+            this.Move.Size = new System.Drawing.Size(87, 46);
             this.Move.TabIndex = 14;
             this.Move.Text = "Move";
             this.Move.UseVisualStyleBackColor = true;
@@ -247,9 +245,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 523);
+            this.ClientSize = new System.Drawing.Size(1341, 644);
             this.Controls.Add(this.Move);
             this.Controls.Add(this.Rotate);
             this.Controls.Add(this.ClearAll);
@@ -267,7 +265,7 @@
             this.Controls.Add(this.Square);
             this.Controls.Add(this.Rectangle);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

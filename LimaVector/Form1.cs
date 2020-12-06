@@ -51,7 +51,7 @@ namespace LimaVector
             
             pen = new Pen(System.Drawing.Color.Red, 5);
             pictureBox1.Image = mainBitmap;
-            startEntered = false;
+           
             numberOfVertices.Value = 5;
         }
 
@@ -248,27 +248,8 @@ namespace LimaVector
 
         private void Polygon_Click_1(object sender, EventArgs e)
         {
-
-            if(_action == "Polygon")
-            {
-                if (polygon.NumberOfVertices == 0)
-                {
-                    polygon.Vertices.Add(e.Location);
-                    graphics = Graphics.FromImage(mainBitmap);
-                    polygon.NumberOfVertices++;
-                }
-                else
-                {
-                    graphics = Graphics.FromImage(mainBitmap);
-                    graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices-1], e.Location);
-                    polygon.NumberOfVertices++;
-                    polygon.Vertices.Add(e.Location);//записали в массив новую точку 
-                    pictureBox1.Image = mainBitmap;
-                }
-            }
-            //_action = "Polygon";
-            //fabric = new PolygonFabric();
-
+            _action = "Polygon";
+            fabric = new PolygonFabric();
         }
         private void RegularPolygon_Click(object sender, EventArgs e)
         {
