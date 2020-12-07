@@ -14,12 +14,12 @@ namespace LimaVector.Shape
 
         public PolygonShape()
         {
-            Vertices =  new List<Point>();
+            Vertices =  new List<PointF>();
             NumberOfVertices = 0;
         }
 
 
-        override public void UpdateVertices(Point startPoint, Point endPoint)
+        override public void UpdateVertices(PointF startPoint, PointF endPoint)
         {
             throw new NotImplementedException();
         }

@@ -9,35 +9,35 @@ namespace LimaVector.Shape
 {
     public abstract class AShape
     {
-        public List<Point> Vertices;
-        public Point GravityCenter;
+        public List<PointF> Vertices;
+        public PointF GravityCenter;
         public Color Color;
         public int PenWidth;
 
-        public Point[] GetPoints()
+        public PointF[] GetPoints()
         {
             return Vertices.ToArray();
         }
-        public abstract void UpdateVertices(Point startPoint, Point endPoint);
+        public abstract void UpdateVertices(PointF startPoint, PointF endPoint);
         public void Rotate(double phi)
         {
             for(int i=0; i < Vertices.Count(); i++)
             {
-                Point vertice = Vertices[i];
-                PointF delta = new Point(vertice.X - GravityCenter.X, vertice.Y - GravityCenter.Y);
-                Vertices[i] = new Point(
-                    (int)(GravityCenter.X + delta.X * Math.Cos(phi) - delta.Y * Math.Sin(phi)),
-                    (int)(GravityCenter.Y + delta.X * Math.Sin(phi) + delta.Y * Math.Cos(phi))
+                PointF vertice = Vertices[i];
+                PointF delta = new PointF(vertice.X - GravityCenter.X, vertice.Y - GravityCenter.Y);
+                Vertices[i] = new PointF(
+                    (float)(GravityCenter.X + delta.X * Math.Cos(phi) - delta.Y * Math.Sin(phi)),
+                    (float)(GravityCenter.Y + delta.X * Math.Sin(phi) + delta.Y * Math.Cos(phi))
                 );
             }
         }
-        public void Move(Point delta)
+        public void Move(PointF delta)
         {
-            GravityCenter = new Point(GravityCenter.X + delta.X, GravityCenter.Y + delta.Y);
+            GravityCenter = new PointF(GravityCenter.X + delta.X, GravityCenter.Y + delta.Y);
             for (int i = 0; i < Vertices.Count(); i++)
             {
-                Point vertice = Vertices[i];
-                Vertices[i] = new Point(vertice.X+ delta.X, vertice.Y + delta.Y);
+                PointF vertice = Vertices[i];
+                Vertices[i] = new PointF(vertice.X+ delta.X, vertice.Y + delta.Y);
             }
         }
 

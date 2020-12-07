@@ -9,7 +9,7 @@ namespace LimaVector.Shape
 {
     public class CurveShape : AShape
     {
-        public override void UpdateVertices(Point startPoint, Point endPoint)
+        public override void UpdateVertices(PointF startPoint, PointF endPoint)
         {
 
         }

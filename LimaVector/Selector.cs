@@ -19,7 +19,7 @@ namespace LimaVector
             _bitmap = bitmap;
         }
 
-        public AShape Select(Point point)
+        public AShape Select(PointF point)
         {
             if(_shapes.Count() == 0)
             {
@@ -29,7 +29,7 @@ namespace LimaVector
             {
                 if(shape!= null)
                 {
-                    Point previousVertice = shape.Vertices[shape.Vertices.Count - 1];
+                    PointF previousVertice = shape.Vertices[shape.Vertices.Count - 1];
                     for(int i=0; i < shape.Vertices.Count; i++)
                     {
                         if (Contain(shape.Vertices[i], previousVertice, point, shape.PenWidth))
@@ -44,7 +44,7 @@ namespace LimaVector
             return null;
         }
 
-        private bool Contain(Point start, Point end, Point checkPoint, double accuracy)
+        private bool Contain(PointF start, PointF end, PointF checkPoint, double accuracy)
         {
             double x1 = start.X;
             double y1 = start.Y;
