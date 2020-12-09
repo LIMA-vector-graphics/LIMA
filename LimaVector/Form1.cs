@@ -242,7 +242,6 @@ namespace LimaVector
         {
             _action = "Polygon";
             fabric = new PolygonFabric();
-
         }
 
 
@@ -294,6 +293,10 @@ namespace LimaVector
             _action = "rotate";
         }
 
+        private void BrokenLine_Click(object sendet, EventArgs e)
+        {
+            _action = "polygon";
+        }
         private double GetRotationAngle(PointF center, PointF start, PointF end)
         {
             PointF a = Delta(center, start);
