@@ -14,7 +14,9 @@ namespace LimaVector.Shape
 
             GravityCenter = new PointF((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
             // обсчет точек прямоугольника
-            Vertices = new List<PointF>() {
+
+            Vertices = new List<PointF>() 
+            {
                 startPoint,
                 new PointF(startPoint.X, endPoint.Y),
                 endPoint,
