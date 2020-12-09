@@ -14,30 +14,24 @@ namespace LimaVector
         Bitmap tmpBitmap; // Копия основного слоя ImageBox на котором происходит процесс рисования
         Graphics graphics;
         Pen pen;
-        Point point;
-        Point start;
-        Point next;
-        int counter;
-
+        PointF point;
+        PointF start;
+        PointF next;
         bool mD;
-      
+        bool startEntered;
         int NumberOfVertices;
         PolygonShape polygon;
-   
-        TriangleThreePoints triangleThreePoints; //создали объект класса
-       
+
+        TriangleThreePoints triangleThreePoints; //создали объект класс
 
         IFabric fabric;
         List<AShape> shapes;
 
-
-        List<Point> _clickedPoints = new List<Point>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
+        List<PointF> _clickedPoints = new List<PointF>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
         string _action = ""; //// поле в котором будет храниться текущее действие
-
 
         AShape currentShape;
         IThreePointShape shapeThreePoints;
-
 
         public Form1()
         {
@@ -48,10 +42,11 @@ namespace LimaVector
         {
             shapes = new List<AShape>();
             mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            
-            pen = new Pen(System.Drawing.Color.Red, 5);
+
+            pen = new Pen(System.Drawing.Color.Black, 16);
             pictureBox1.Image = mainBitmap;
-           
+
+            startEntered = false;
             numberOfVertices.Value = 5;
         }
 
@@ -76,14 +71,13 @@ namespace LimaVector
                         point = e.Location;
                         break;
                     case "move":
-                        Point delta = Delta(point, e.Location);
+                        PointF delta = Delta(point, e.Location);
                         currentShape.Move(delta);
                         tmpBitmap = (Bitmap)mainBitmap.Clone();
                         pictureBox1.Image = currentShape.Paint(tmpBitmap);
                         point = e.Location;
                         GC.Collect();
                         break;
-
                     case "Triangle":
                         if (triangleThreePoints != null && triangleThreePoints.NumberOfVertices != 0)
                         {
@@ -97,13 +91,14 @@ namespace LimaVector
                             }
                             pictureBox1.Image = tmpBitmap;
                             GC.Collect();
+                            //blablablabl
+                            //blablabla
                         }
-
                         break;
                 }
             }
-           
         }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             point = e.Location;
@@ -118,14 +113,14 @@ namespace LimaVector
                 {
                     case 0:
                         triangleThreePoints.Vertices.Add(e.Location);
-                        triangleThreePoints.NumberOfVertices=1;
+                        triangleThreePoints.NumberOfVertices = 1;
                         break;
-                    
+
                     case 1:
                         triangleThreePoints.Vertices.Add(e.Location); // добавили точку в вершину
                         graphics = Graphics.FromImage(mainBitmap);
                         graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
-                        triangleThreePoints.NumberOfVertices=2;
+                        triangleThreePoints.NumberOfVertices = 2;
                         pictureBox1.Image = mainBitmap;
                         break;
 
@@ -138,9 +133,8 @@ namespace LimaVector
                         triangleThreePoints.Vertices.Clear();
                         break;
                 }
-  
-            }
 
+            }
             if (_action == "drag")
             {
                 point = e.Location;
@@ -161,7 +155,7 @@ namespace LimaVector
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_action == "drag" || _action == "rotate" || _action =="move")
+            if (_action == "drag" || _action == "rotate" || _action == "move")
             {
                 mD = false;
                 mainBitmap = tmpBitmap;
@@ -195,11 +189,6 @@ namespace LimaVector
 
                     pictureBox1.Image = mainBitmap;
                 }
-            }
-
-            if (_action == "Triangle")
-            {
-
             }
         }
 
@@ -243,8 +232,9 @@ namespace LimaVector
             fabric = new EllipseFabric();
         }
 
-        private void BrokenLine_Click(object sender, EventArgs e)
+        private void Polygon_Click(object sender, EventArgs e)
         {
+            //shape = new PolygonShape();
             _action = "polygon";
         }
 
@@ -252,7 +242,10 @@ namespace LimaVector
         {
             _action = "Polygon";
             fabric = new PolygonFabric();
+
         }
+
+
         private void RegularPolygon_Click(object sender, EventArgs e)
         {
             _action = "drag";
@@ -280,16 +273,13 @@ namespace LimaVector
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (_action == "Polygon")
-            {
-                graphics = Graphics.FromImage(mainBitmap);
-                graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-                graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
-                polygon.NumberOfVertices = 0;
-                polygon.Vertices.Clear();
-                pictureBox1.Image = mainBitmap;
-            }
-
+            //tmpBitmap = (Bitmap)mainBitmap.Clone();
+            graphics = Graphics.FromImage(mainBitmap);
+            graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
+            graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
+            polygon.NumberOfVertices = 0;
+            polygon.Vertices.Clear();
+            pictureBox1.Image = mainBitmap;
         }
 
         private void ClearAll_Click(object sender, EventArgs e)
@@ -304,25 +294,32 @@ namespace LimaVector
             _action = "rotate";
         }
 
-        private double GetRotationAngle(Point center, Point start, Point end)
+        private double GetRotationAngle(PointF center, PointF start, PointF end)
         {
-            Point a = Delta(start, center);
-            Point b = Delta(end, center);
+            PointF a = Delta(center, start);
+            PointF b = Delta(center, end);
             return GetAngle(a, b);
+            //return GetLength(Delta(start, end));
         }
 
-        private double GetAngle(Point a, Point b) // a, b - vectors
+        private double GetAngle(PointF a, PointF b) // a, b - vectors
         {
-            return Math.Acos((a.X * b.X + a.Y * b.Y) / GetLength(a) / GetLength(b));
+            int sign = Math.Sign(a.Y) * Math.Sign(a.X - b.X);
+            if (Math.Abs(a.Y) < 5 || Math.Abs(b.Y) < 5)
+            {
+                sign = Math.Sign(a.X) * Math.Sign(b.Y - a.Y);
+            }
+
+            return sign * Math.Acos((a.X * b.X + a.Y * b.Y) / GetLength(a) / GetLength(b));
         }
-        private double GetLength(Point vector) 
+        private double GetLength(PointF vector)
         {
             return Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
         }
 
-        private Point Delta(Point start, Point end)
+        private PointF Delta(PointF start, PointF end)
         {
-            return new Point(end.X - start.X, end.Y - start.Y);
+            return new PointF(end.X - start.X, end.Y - start.Y);
         }
 
         private void Move_Click(object sender, EventArgs e)
@@ -332,15 +329,15 @@ namespace LimaVector
 
         public void PaintAll()
         {
-            mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height); 
+            mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             foreach (AShape shape in shapes)
             {
-                if(shape!=null)
+                if (shape != null)
                     shape.Paint(mainBitmap);
             }
-            
+
         }
+
     }
 }
-
