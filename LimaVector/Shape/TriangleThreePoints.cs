@@ -19,12 +19,12 @@ namespace LimaVector.Shape
             Vertices = new List<Point>();
             NumberOfVertices = 0;
         }
-        override public Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint)
+        override public PointF[] GetPoints(PointF startPoint, PointF middlePoint, PointF endPoint)
         {
 
-            GravityCenter = new Point((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
+            GravityCenter = new PointF((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
 
-            Point[] points = new Point[3];
+            PointF[] points = new PointF[3];
 
             points[0] = startPoint;
             points[1] = middlePoint;
@@ -32,8 +32,7 @@ namespace LimaVector.Shape
 
             return points;
         }
-
-        public override void UpdateVertices(Point startPoint, Point endPoint)
+        public override void UpdateVertices(PointF startPoint, PointF endPoint)
         {
             throw new NotImplementedException();
         }

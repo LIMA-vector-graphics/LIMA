@@ -1,4 +1,4 @@
-﻿using LimaVector.Fabrics;
+using LimaVector.Fabrics;
 using LimaVector.Shape;
 using System;
 using System.Collections.Generic;
@@ -343,3 +343,4 @@ namespace LimaVector
         }
     }
 }
+

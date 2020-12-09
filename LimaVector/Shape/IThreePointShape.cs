@@ -10,6 +10,6 @@ namespace LimaVector.Shape
 {
     public abstract class IThreePointShape : AShape
     {
-        public abstract Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint);
+        public abstract PointF[] GetPoints(PointF startPoint, PointF middlePoint, PointF endPoint);
     }
 }
