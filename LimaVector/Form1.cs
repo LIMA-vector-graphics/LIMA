@@ -17,18 +17,27 @@ namespace LimaVector
         Point point;
         Point start;
         Point next;
+        int counter;
+
         bool mD;
-        bool startEntered;
+      
         int NumberOfVertices;
         PolygonShape polygon;
+   
+        TriangleThreePoints triangleThreePoints; //создали объект класса
+       
+
         IFabric fabric;
         List<AShape> shapes;
+
 
         List<Point> _clickedPoints = new List<Point>(); // _приватные переменные (поля), список точек для треугольника по трем точкам
         string _action = ""; //// поле в котором будет храниться текущее действие
 
+
         AShape currentShape;
         IThreePointShape shapeThreePoints;
+
 
         public Form1()
         {
@@ -42,8 +51,7 @@ namespace LimaVector
             
             pen = new Pen(System.Drawing.Color.Black, 16);
             pictureBox1.Image = mainBitmap;
-
-            startEntered = false;
+           
             numberOfVertices.Value = 5;
         }
 
@@ -77,6 +85,22 @@ namespace LimaVector
                         break;
                 }
             }
+            if (mD && _action == "Triangle")
+            {
+                if (triangleThreePoints.NumberOfVertices != 0)
+                {
+                    tmpBitmap = (Bitmap)mainBitmap.Clone();
+                    graphics = Graphics.FromImage(tmpBitmap);
+                    graphics.DrawLine(pen, point, e.Location);
+
+                    if (triangleThreePoints.NumberOfVertices == 2)
+                    {
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
+                    }
+                    pictureBox1.Image = tmpBitmap;
+                    GC.Collect();
+                }
+            }
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -88,28 +112,33 @@ namespace LimaVector
 
             if (_action == "Triangle") // выбранный режим
             {
-
-                _clickedPoints.Add(point); //добавлеем точку в лист (массив) , текущая точка которую кликнули
-                if (_clickedPoints.Count == 3) // счетчик точек
+                switch (triangleThreePoints.NumberOfVertices)
                 {
-                    // draw triangle here
-                    Point[] pts = shapeThreePoints.GetPoints(_clickedPoints[0], _clickedPoints[1], _clickedPoints[2]); // вызываем метод для трех точек которые были нажаты
+                    case 0:
+                        triangleThreePoints.Vertices.Add(e.Location);
+                        triangleThreePoints.NumberOfVertices=1;
+                        break;
+                    
+                    case 1:
+                        triangleThreePoints.Vertices.Add(e.Location); // добавили точку в вершину
+                        graphics = Graphics.FromImage(mainBitmap);
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
+                        triangleThreePoints.NumberOfVertices=2;
+                        pictureBox1.Image = mainBitmap;
+                        break;
 
-                    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
-                    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
-                    graphics.DrawPolygon(pen, pts);// соединяем точки
-                    pictureBox1.Image = tmpBitmap;
-                    GC.Collect();
-                    _clickedPoints.Clear();// чистим координаты точек
+                    case 2:
+                        graphics = Graphics.FromImage(mainBitmap);
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
+                        graphics.DrawLine(pen, triangleThreePoints.Vertices[1], e.Location);
+                        pictureBox1.Image = mainBitmap;
+                        triangleThreePoints.NumberOfVertices = 0;
+                        triangleThreePoints.Vertices.Clear();
+                        break;
                 }
-                else // рисуем точки вершины треугольника до тех пор пока точек не станет 3
-                {
-                    tmpBitmap = (Bitmap)mainBitmap.Clone(); //создаем копии битмапа пока рисуем
-                    graphics = Graphics.FromImage(tmpBitmap); //рисуем на копии главного битмапа
-                    graphics.DrawPolygon(pen, new Point[] { e.Location, new Point(e.Location.X - 1, e.Location.Y - 1) }); //передали точку и координаты точки -1, для того чтобы ее было видно ,
-                    pictureBox1.Image = tmpBitmap;
-                }
+  
             }
+
             if (_action == "drag")
             {
                 point = e.Location;
@@ -165,6 +194,11 @@ namespace LimaVector
                     pictureBox1.Image = mainBitmap;
                 }
             }
+
+            if (_action == "Triangle")
+            {
+
+            }
         }
 
         private void Rectangle_Click(object sender, EventArgs e)
@@ -207,9 +241,8 @@ namespace LimaVector
             fabric = new EllipseFabric();
         }
 
-        private void Polygon_Click(object sender, EventArgs e)
+        private void BrokenLine_Click(object sender, EventArgs e)
         {
-            //shape = new PolygonShape();
             _action = "polygon";
         }
 
@@ -217,10 +250,7 @@ namespace LimaVector
         {
             _action = "Polygon";
             fabric = new PolygonFabric();
-
         }
-
-
         private void RegularPolygon_Click(object sender, EventArgs e)
         {
             _action = "drag";
@@ -236,7 +266,7 @@ namespace LimaVector
         private void TriangleThreePoints_Click(object sender, EventArgs e)
         {
             _action = "Triangle";
-            shapeThreePoints = new TriangleThreePoints();
+            triangleThreePoints = new TriangleThreePoints();// создаем новый экземпляр класса
         }
 
         private void Color_Click(object sender, EventArgs e)
@@ -248,13 +278,16 @@ namespace LimaVector
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //tmpBitmap = (Bitmap)mainBitmap.Clone();
-            graphics = Graphics.FromImage(mainBitmap);
-            graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-            graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
-            polygon.NumberOfVertices = 0;
-            polygon.Vertices.Clear();
-            pictureBox1.Image = mainBitmap;
+            if (_action == "Polygon")
+            {
+                graphics = Graphics.FromImage(mainBitmap);
+                graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
+                graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
+                polygon.NumberOfVertices = 0;
+                polygon.Vertices.Clear();
+                pictureBox1.Image = mainBitmap;
+            }
+
         }
 
         private void ClearAll_Click(object sender, EventArgs e)
@@ -305,102 +338,6 @@ namespace LimaVector
                     shape.Paint(mainBitmap);
             }
             
-        }
-
-        private void Fractal_Click(object sender, EventArgs e)
-        {
-            BuildFractal(new Point(600, 400), 200);
-        }
-        private void BuildFractal(Point start, int radius, string mode="all", double alpha = 0.63, double penWidth)
-        {
-            if (radius > 1)
-            {
-                pen.Width = penWidth;
-                Point upLeft = new Point(start.X - (int)(radius * Math.Sqrt(3) / 2), start.Y - radius / 2);
-                Point upRight = new Point(start.X + (int)(radius * Math.Sqrt(3) / 2), start.Y - radius / 2);
-                Point down = new Point(start.X, start.Y + radius);
-                Point downLeft = GetSimmetric(upRight, start);
-                Point downRight = GetSimmetric(upLeft, start);
-                Point up = GetSimmetric(down, start);
-                graphics = Graphics.FromImage(mainBitmap);
-                switch(mode)
-                {
-                    case "all":
-                        graphics.DrawLine(pen, start, down);
-                        pictureBox1.Image = mainBitmap;
-
-                        graphics.DrawLine(pen, start, upLeft);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(upLeft, (int)(radius * alpha), "upLeft", penWidth * alpha);
-
-                        graphics.DrawLine(pen, start, upRight);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(upRight, (int)(radius * alpha), "upRight", penWidth * alpha);
-                        break;
-                    case "upLeft":
-                        graphics.DrawLine(pen, start, up);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(up, (int)(radius * alpha), "up", penWidth * alpha);
-
-                        graphics.DrawLine(pen, start, downLeft);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(downLeft, (int)(radius * alpha), "downLeft", penWidth * alpha);
-                        break;
-                    case "upRight":
-                        graphics.DrawLine(pen, start, up);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(up, (int)(radius * alpha), "up", penWidth * alpha);
-
-                        graphics.DrawLine(pen, start, downRight);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(downRight, (int)(radius * alpha), "downRight", penWidth * alpha);
-                        break;
-                    case "up":
-                        graphics.DrawLine(pen, start, upLeft);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(upLeft, (int)(radius * alpha), "upLeft", penWidth * alpha);
-
-                        graphics.DrawLine(pen, start, upRight);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(upRight, (int)(radius * alpha), "upRight", penWidth * alpha);
-                        break;
-                    case "down":
-                        graphics.DrawLine(pen, start, downLeft);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(downLeft, (int)(radius * alpha), "downLeft", penWidth * alpha);
-
-                        graphics.DrawLine(pen, start, downRight);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(downRight, (int)(radius * alpha), "downRight", penWidth * alpha);
-                        break;
-                    case "downLeft":
-                        graphics.DrawLine(pen, start, down);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(down, (int)(radius * alpha), "down", penWidth * alpha);
-
-                        graphics.DrawLine(pen, start, upLeft);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(upLeft, (int)(radius * alpha), "upLeft", penWidth * alpha);
-                        break;
-                    case "downRight":
-                        graphics.DrawLine(pen, start, down);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(down, (int)(radius * alpha), "down", penWidth * alpha);
-
-                        graphics.DrawLine(pen, start, upRight);
-                        pictureBox1.Image = mainBitmap;
-                        BuildFractal(upRight, radius / 2, "upRight", penWidth * alpha);
-                        break;
-                    default:
-                        break;
-                }
-                pen.Width /= 2;
-            }
-        }
-
-        private Point GetSimmetric(Point point, Point center)
-        {
-            return new Point(2 * center.X - point.X, 2 * center.Y - point.Y);
         }
     }
 }

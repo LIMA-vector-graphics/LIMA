@@ -9,7 +9,17 @@ namespace LimaVector.Shape
 {
     public class TriangleThreePoints : IThreePointShape
     {
-        override public PointF[] GetPoints(PointF startPoint, PointF middlePoint, PointF endPoint)
+
+        public List<Point> Vertices;
+
+        public int NumberOfVertices;
+
+        public TriangleThreePoints()
+        {
+            Vertices = new List<Point>();
+            NumberOfVertices = 0;
+        }
+        override public Point[] GetPoints(Point startPoint, Point middlePoint, Point endPoint)
         {
 
             GravityCenter = new PointF((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
