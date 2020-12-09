@@ -55,6 +55,7 @@
     <Compile Include="Fabrics\RegularPolygonFabric.cs" />
     <Compile Include="Fabrics\SquareFabric.cs" />
     <Compile Include="Fabrics\TriangleFabric.cs" />
+    <Compile Include="Fabrics\TriangleThreePointsFabric.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

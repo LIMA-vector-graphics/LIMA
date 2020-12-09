@@ -83,24 +83,26 @@ namespace LimaVector
                         point = e.Location;
                         GC.Collect();
                         break;
-                }
-            }
-            if (mD && _action == "Triangle")
-            {
-                if (triangleThreePoints.NumberOfVertices != 0)
-                {
-                    tmpBitmap = (Bitmap)mainBitmap.Clone();
-                    graphics = Graphics.FromImage(tmpBitmap);
-                    graphics.DrawLine(pen, point, e.Location);
 
-                    if (triangleThreePoints.NumberOfVertices == 2)
-                    {
-                        graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
-                    }
-                    pictureBox1.Image = tmpBitmap;
-                    GC.Collect();
+                    case "Triangle":
+                        if (triangleThreePoints != null && triangleThreePoints.NumberOfVertices != 0)
+                        {
+                            tmpBitmap = (Bitmap)mainBitmap.Clone();
+                            graphics = Graphics.FromImage(tmpBitmap);
+                            graphics.DrawLine(pen, point, e.Location);
+
+                            if (triangleThreePoints.NumberOfVertices == 2)
+                            {
+                                graphics.DrawLine(pen, triangleThreePoints.Vertices[0], e.Location);
+                            }
+                            pictureBox1.Image = tmpBitmap;
+                            GC.Collect();
+                        }
+
+                        break;
                 }
             }
+           
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
