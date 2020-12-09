@@ -49,7 +49,7 @@ namespace LimaVector
             shapes = new List<AShape>();
             mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             
-            pen = new Pen(System.Drawing.Color.Red, 5);
+            pen = new Pen(System.Drawing.Color.Black, 16);
             pictureBox1.Image = mainBitmap;
            
             numberOfVertices.Value = 5;
