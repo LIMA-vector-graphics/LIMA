@@ -24,12 +24,6 @@ namespace LimaVector.Shape
         {
           
         }
-         
-        public override Bitmap Paint(Bitmap bitmap) //PointF location)
-        {
-            // линия или две лиинии в зависимости от кол-ва вершин
-            return bitmap;
-        }
     }
 
 
