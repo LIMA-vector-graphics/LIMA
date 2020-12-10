@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LimaVector.Shape
 {
-    public class EllipseShape : AShape
+    public class EllipseShape : ADragShape
     {
         override public void UpdateVertices(PointF startPoint, PointF endPoint)
         {

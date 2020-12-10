@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
+
 
 namespace LimaVector.Shape
 {
-    public class CurveShape : AShape
+    public abstract class ADragShape : AShape
     {
-        public override void UpdateVertices(PointF startPoint, PointF endPoint)
-        {
-
-        }
-
         public override void UpdateVertices(PointF location)
         {
            

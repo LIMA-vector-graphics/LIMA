@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace LimaVector.Shape
 {
-    public class SquareShape : AShape
+    public class SquareShape : ADragShape
     {
         override public void UpdateVertices(PointF startPoint, PointF endPoint)
         {

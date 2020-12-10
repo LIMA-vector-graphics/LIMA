@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace LimaVector.Shape
 {
-    class RegularPolygonShape : AShape
+    class RegularPolygonShape : ADragShape
     {
-        int N;
         public RegularPolygonShape(int N)
         {
-            this.N = N;
+            NumberOfVertices = N;
         }
 
         override public void UpdateVertices(PointF startPoint, PointF endPoint)
@@ -25,12 +24,12 @@ namespace LimaVector.Shape
             double radius = (int) Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
             double phase = Math.PI + Math.Atan2(delta.Y, delta.X);
 
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < NumberOfVertices; i++)
             {
                 Vertices.Add( 
                     new PointF(
-                    center.X + (int)(radius * Math.Cos(phase + 2 * Math.PI * i / N)),
-                    center.Y + (int)(radius * Math.Sin(phase + 2 * Math.PI * i / N))
+                    center.X + (int)(radius * Math.Cos(phase + 2 * Math.PI * i / NumberOfVertices)),
+                    center.Y + (int)(radius * Math.Sin(phase + 2 * Math.PI * i / NumberOfVertices))
                     )
                 );
             }
