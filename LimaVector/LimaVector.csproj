@@ -65,10 +65,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selector.cs" />
+    <Compile Include="Shape\ADragShape.cs" />
     <Compile Include="Shape\CurveShape.cs" />
     <Compile Include="Shape\EllipseShape.cs" />
     <Compile Include="Shape\AShape.cs" />
-    <Compile Include="Shape\IThreePointShape.cs" />
     <Compile Include="Shape\LineShape.cs" />
     <Compile Include="Shape\PolygonShape.cs" />
     <Compile Include="Shape\RectangleShape.cs" />
@@ -76,6 +76,9 @@
     <Compile Include="Shape\SquareShape.cs" />
     <Compile Include="Shape\TriangleShape.cs" />
     <Compile Include="Shape\TriangleThreePoints.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

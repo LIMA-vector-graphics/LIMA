@@ -46,6 +46,7 @@
             this.ClearAll = new System.Windows.Forms.Button();
             this.Rotate = new System.Windows.Forms.Button();
             this.Move = new System.Windows.Forms.Button();
+            this.Resize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfVertices)).BeginInit();
             this.SuspendLayout();
@@ -135,7 +136,7 @@
             // Ellipse
             // 
             this.Ellipse.Location = new System.Drawing.Point(24, 311);
-            this.Ellipse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Ellipse.Margin = new System.Windows.Forms.Padding(4);
             this.Ellipse.Name = "Ellipse";
             this.Ellipse.Size = new System.Drawing.Size(77, 49);
             this.Ellipse.TabIndex = 7;
@@ -146,7 +147,7 @@
             // BrokenLine
             // 
             this.BrokenLine.Location = new System.Drawing.Point(24, 461);
-            this.BrokenLine.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.BrokenLine.Margin = new System.Windows.Forms.Padding(5);
             this.BrokenLine.Name = "BrokenLine";
             this.BrokenLine.Size = new System.Drawing.Size(103, 59);
             this.BrokenLine.TabIndex = 8;
@@ -158,7 +159,7 @@
             // RegularPolygon
             // 
             this.RegularPolygon.Location = new System.Drawing.Point(24, 369);
-            this.RegularPolygon.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.RegularPolygon.Margin = new System.Windows.Forms.Padding(5);
             this.RegularPolygon.Name = "RegularPolygon";
             this.RegularPolygon.Size = new System.Drawing.Size(77, 52);
             this.RegularPolygon.TabIndex = 9;
@@ -169,7 +170,7 @@
             // numberOfVertices
             // 
             this.numberOfVertices.Location = new System.Drawing.Point(23, 430);
-            this.numberOfVertices.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numberOfVertices.Margin = new System.Windows.Forms.Padding(4);
             this.numberOfVertices.Name = "numberOfVertices";
             this.numberOfVertices.Size = new System.Drawing.Size(77, 22);
             this.numberOfVertices.TabIndex = 10;
@@ -224,7 +225,7 @@
             // Rotate
             // 
             this.Rotate.Location = new System.Drawing.Point(445, 5);
-            this.Rotate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Rotate.Margin = new System.Windows.Forms.Padding(4);
             this.Rotate.Name = "Rotate";
             this.Rotate.Size = new System.Drawing.Size(100, 44);
             this.Rotate.TabIndex = 13;
@@ -235,7 +236,7 @@
             // Move
             // 
             this.Move.Location = new System.Drawing.Point(555, 5);
-            this.Move.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Move.Margin = new System.Windows.Forms.Padding(4);
             this.Move.Name = "Move";
             this.Move.Size = new System.Drawing.Size(87, 46);
             this.Move.TabIndex = 14;
@@ -243,11 +244,23 @@
             this.Move.UseVisualStyleBackColor = true;
             this.Move.Click += new System.EventHandler(this.Move_Click);
             // 
+            // Resize
+            // 
+            this.Resize.Location = new System.Drawing.Point(650, 5);
+            this.Resize.Margin = new System.Windows.Forms.Padding(4);
+            this.Resize.Name = "Resize";
+            this.Resize.Size = new System.Drawing.Size(100, 44);
+            this.Resize.TabIndex = 15;
+            this.Resize.Text = "Rrsize";
+            this.Resize.UseVisualStyleBackColor = true;
+            this.Resize.Click += new System.EventHandler(this.Resize_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1341, 644);
+            this.Controls.Add(this.Resize);
             this.Controls.Add(this.Move);
             this.Controls.Add(this.Rotate);
             this.Controls.Add(this.ClearAll);
@@ -295,6 +308,7 @@
         private System.Windows.Forms.Button ClearAll;
         private System.Windows.Forms.Button Rotate;
         private System.Windows.Forms.Button Move;
+        private System.Windows.Forms.Button Resize;
     }
 }
 

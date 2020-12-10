@@ -13,12 +13,17 @@ namespace LimaVector.Shape
         public PointF GravityCenter;
         public Color Color;
         public int PenWidth;
+        public int NumberOfVertices;
+
 
         public PointF[] GetPoints()
         {
             return Vertices.ToArray();
         }
         public abstract void UpdateVertices(PointF startPoint, PointF endPoint);
+
+        public abstract void UpdateVertices(PointF location);
+
         public void Rotate(double phi)
         {
             for(int i=0; i < Vertices.Count(); i++)
@@ -48,6 +53,32 @@ namespace LimaVector.Shape
             Graphics graphics = Graphics.FromImage(bitmap);
             graphics.DrawPolygon(pen, Vertices.ToArray());
             return bitmap;
+        }
+
+        public void Resize (PointF dif)
+        {
+            for (int i = 0; i < Vertices.Count(); i++)
+            {
+                PointF vertice = Vertices[i];
+                PointF d = new PointF(vertice.X - GravityCenter.X, vertice.Y - GravityCenter.Y);
+
+                Vertices[i] = new PointF(GravityCenter.X+ dif.X, GravityCenter.Y + dif.Y);
+
+            }
+        }
+
+        public void UpdateCenter()
+        {
+            float x = 0;
+            float y = 0;
+            int n = Vertices.Count();
+
+            foreach (PointF vertice in Vertices)
+            {
+                x += vertice.X;
+                y += vertice.Y;
+            }
+            GravityCenter = new PointF(x / n, y / n);
         }
     }
 }

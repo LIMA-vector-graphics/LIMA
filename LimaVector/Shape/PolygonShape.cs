@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LimaVector.Shape
 {
-    class PolygonShape : AShape
+    class PolygonShape : ADragShape
     {
 
         public int NumberOfVertices;
@@ -21,7 +21,7 @@ namespace LimaVector.Shape
 
         override public void UpdateVertices(PointF startPoint, PointF endPoint)
         {
-            throw new NotImplementedException();
+          
         }
     }
 }
