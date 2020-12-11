@@ -333,7 +333,7 @@ namespace LimaVector
         private double GetAngle(PointF a, PointF b) // a, b - vectors
         {
             int sign = Math.Sign(a.Y) * Math.Sign(a.X - b.X);
-            if (Math.Abs(a.Y) < 5 || Math.Abs(b.Y) < 5)
+            if (Math.Abs(a.Y) < 2 || Math.Abs(b.Y) < 2)
             {
                 sign = Math.Sign(a.X) * Math.Sign(b.Y - a.Y);
             }
@@ -370,6 +370,11 @@ namespace LimaVector
         private void Resize_Click(object sender, EventArgs e)
         {
             _action = "resize";
+        }
+
+        private void SelectVertice_Click(object sender, EventArgs e)
+        {
+            _action = "selectVertice";
         }
     }
 }
