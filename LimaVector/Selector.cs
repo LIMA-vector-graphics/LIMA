@@ -11,7 +11,7 @@ namespace LimaVector
     class Selector
     {
         Bitmap _bitmap;
-        List<Shape.AShape> _shapes;
+        List<AShape> _shapes;
 
         public Selector(Bitmap bitmap, List<Shape.AShape> shapes)
         {
@@ -32,8 +32,9 @@ namespace LimaVector
                     PointF previousVertice = shape.Vertices[shape.Vertices.Count - 1];
                     for(int i=0; i < shape.Vertices.Count; i++)
                     {
-                        if (Contain(shape.Vertices[i], previousVertice, point, shape.PenWidth))
+                        if (point.Belongs(shape.Vertices[i], previousVertice, shape.PenWidth))
                         {
+                            shape.Highlight();
                             return shape;
                         }
                         previousVertice = shape.Vertices[i];
@@ -44,25 +45,34 @@ namespace LimaVector
             return null;
         }
 
-        private bool Contain(PointF start, PointF end, PointF checkPoint, double accuracy)
+        public AShape SelectVertice(PointF point)
         {
-            double x1 = start.X;
-            double y1 = start.Y;
-            double x2 = end.X;
-            double y2 = end.Y;
-            double x = checkPoint.X;
-            double y = checkPoint.Y;
+            if (_shapes.Count() == 0)
+            {
+                return null;
+            }
+            foreach (AShape shape in _shapes)
+            {
+                if (shape != null)
+                {
+                    for (int i = 0; i < shape.Vertices.Count; i++)
+                    {
+                        if(shape.Vertices[i].Equals(point, shape.PenWidth))
+                        {
+                            shape.Highlight();
+                            shape.SelectedVerticeIndex = i;
+                            return shape;
+                        }
+                    }
+                }
 
-            if (CheckInside(x, x1, x2, accuracy) && CheckInside(y, y1, y2, accuracy))
-                    return Math.Abs((x - x1) * (y2 - y1) - (y - y1) * (x2 - x1)) < accuracy / 2 * Math.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-            else return false;
+            }
+            return null;
         }
 
-        private bool CheckInside(double x, double a, double b, double accuracy)
+        private Tuple<AShape, int> Tuple(AShape shape, int i)
         {
-            if ((x > a - accuracy && x < b + accuracy) || (x > b - accuracy && x < a + accuracy))
-                return true;
-            else return false;
+            throw new NotImplementedException();
         }
     }
 }

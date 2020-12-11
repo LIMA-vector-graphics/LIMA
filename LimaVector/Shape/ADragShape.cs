@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace LimaVector.Shape
 {
     public abstract class ADragShape : AShape
