@@ -44,6 +44,7 @@ namespace LimaVector
         {
             if (mD && currentShape != null)
             {
+                PointF delta;
                 switch (_action)
                 {
                     case "paint":
@@ -69,7 +70,7 @@ namespace LimaVector
                         break;
 
                     case "rotate":
-                        double phi = GetRotationAngle(currentShape.GravityCenter, point, e.Location);
+                        double phi = currentShape.GravityCenter.GetRotationAngle(point, e.Location);
                         currentShape.Rotate(phi);
                         tmpBitmap = (Bitmap)mainBitmap.Clone();
                         pictureBox1.Image = currentShape.Paint(tmpBitmap);
@@ -77,7 +78,7 @@ namespace LimaVector
                         point = e.Location;
                         break;
                     case "move":
-                        PointF delta = Delta(point, e.Location);
+                        delta = point.Delta(e.Location);
                         currentShape.Move(delta);
                         tmpBitmap = (Bitmap)mainBitmap.Clone();
                         pictureBox1.Image = currentShape.Paint(tmpBitmap);
@@ -85,40 +86,40 @@ namespace LimaVector
                         GC.Collect();
                         break;
                     case "resize":
-                        float alpha = GetAlpha(currentShape.GravityCenter, point, e.Location);
+                        float alpha = currentShape.GravityCenter.GetAlpha(point, e.Location);
                         currentShape.Resize(alpha);
                         tmpBitmap = (Bitmap)mainBitmap.Clone();
                         pictureBox1.Image = currentShape.Paint(tmpBitmap);
                         point = e.Location;
                         GC.Collect();
                         break;
+                    case "selectVertice":
+                        delta = point.Delta(e.Location);
+                        currentShape.MoveVertice(delta);
+                        tmpBitmap = (Bitmap)mainBitmap.Clone();
+                        pictureBox1.Image = currentShape.Paint(tmpBitmap);
+                        point = e.Location;
+                        GC.Collect();
+                        break;
+                        //case "Triangle":
+                        //    if (currentShape.NumberOfVertices != 0)
+                        //    {
+                        //        tmpBitmap = (Bitmap)mainBitmap.Clone();
+                        //        graphics = Graphics.FromImage(tmpBitmap);
+                        //        graphics.DrawLine(pen, point, e.Location);
 
-                    //case "Triangle":
-                    //    if (currentShape.NumberOfVertices != 0)
-                    //    {
-                    //        tmpBitmap = (Bitmap)mainBitmap.Clone();
-                    //        graphics = Graphics.FromImage(tmpBitmap);
-                    //        graphics.DrawLine(pen, point, e.Location);
-
-                    //        if (currentShape.NumberOfVertices == 2)
-                    //        {
-                    //            graphics.DrawLine(pen, currentShape.Vertices[0], e.Location);
-                    //        }
-                    //        pictureBox1.Image = tmpBitmap;
-                    //        GC.Collect();
-                            //blablablabl
-                            //blablabla
-                    //     }
-                    //break;
+                        //        if (currentShape.NumberOfVertices == 2)
+                        //        {
+                        //            graphics.DrawLine(pen, currentShape.Vertices[0], e.Location);
+                        //        }
+                        //        pictureBox1.Image = tmpBitmap;
+                        //        GC.Collect();
+                        //blablablabl
+                        //blablabla
+                        //     }
+                        //break;
                 }
             }
-        }
-
-        private float GetAlpha(PointF center, PointF point, Point location)
-        {
-            PointF a = Delta(center, point);
-            PointF b = Delta(center, location);
-            return GetLength(b) / GetLength(a);
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -177,10 +178,17 @@ namespace LimaVector
              
             }
 
-            if (_action == "rotate" || _action == "move" ||_action=="resize")
+            if(_action == "rotate" || _action == "move" || _action=="resize")
             {
                 Selector selector = new Selector(mainBitmap, shapes);
                 currentShape = selector.Select(e.Location);
+                shapes.Remove(currentShape);
+                PaintAll();
+            }
+            if(_action == "selectVertice")
+            {
+                Selector selector = new Selector(mainBitmap, shapes);
+                currentShape = selector.SelectVertice(e.Location);
                 shapes.Remove(currentShape);
                 PaintAll();
             }
@@ -189,7 +197,12 @@ namespace LimaVector
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_action == "paint" || _action == "rotate" || _action == "move" || _action == "resize")
+            if (_action == "paint" || 
+                _action == "rotate" || 
+                _action == "move" || 
+                _action == "resize" || 
+                _action == "selectVertice"
+                )
             {
                 mD = false;
                 mainBitmap = tmpBitmap;
@@ -298,12 +311,16 @@ namespace LimaVector
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            graphics = Graphics.FromImage(mainBitmap);
-            graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-            graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
-            polygon.NumberOfVertices = 0;
-            polygon.Vertices.Clear();
-            pictureBox1.Image = mainBitmap;
+            if(_action == "polygon") 
+            {
+                graphics = Graphics.FromImage(mainBitmap);
+                graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
+                graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
+                polygon.NumberOfVertices = 0;
+                polygon.Vertices.Clear();
+                pictureBox1.Image = mainBitmap;
+            }
+
         }
 
         private void ClearAll_Click(object sender, EventArgs e)
@@ -321,33 +338,6 @@ namespace LimaVector
         private void BrokenLine_Click(object sendet, EventArgs e)
         {
             _action = "polygon";
-        }
-        private double GetRotationAngle(PointF center, PointF start, PointF end)
-        {
-            PointF a = Delta(center, start);
-            PointF b = Delta(center, end);
-            return GetAngle(a, b);
-            //return GetLength(Delta(start, end));
-        }
-
-        private double GetAngle(PointF a, PointF b) // a, b - vectors
-        {
-            int sign = Math.Sign(a.Y) * Math.Sign(a.X - b.X);
-            if (Math.Abs(a.Y) < 2 || Math.Abs(b.Y) < 2)
-            {
-                sign = Math.Sign(a.X) * Math.Sign(b.Y - a.Y);
-            }
-
-            return sign * Math.Acos((a.X * b.X + a.Y * b.Y) / GetLength(a) / GetLength(b));
-        }
-        private float GetLength(PointF vector)
-        {
-            return (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
-        }
-
-        private PointF Delta(PointF start, PointF end)
-        {
-            return new PointF(end.X - start.X, end.Y - start.Y);
         }
 
         private void Move_Click(object sender, EventArgs e)

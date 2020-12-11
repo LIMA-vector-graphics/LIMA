@@ -14,7 +14,8 @@ namespace LimaVector.Shape
         public Color Color;
         public int PenWidth;
         public int NumberOfVertices;
-
+        public int SelectedVerticeIndex = -1;
+        public int SelectedEdgeIndex = -1;
 
         public PointF[] GetPoints()
         {
@@ -45,7 +46,18 @@ namespace LimaVector.Shape
                 Vertices[i] = new PointF(vertice.X+ delta.X, vertice.Y + delta.Y);
             }
         }
-
+        public void MoveVertice(PointF delta) // moving vertice with certain index
+        {
+            int index = SelectedVerticeIndex;
+            Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
+            UpdateCenter();
+        }
+        public void MoveEdge(PointF delta) // moving vertice with certain index
+        {
+            int index = SelectedVerticeIndex;
+            Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
+            UpdateCenter();
+        }
 
         public virtual Bitmap Paint(Bitmap bitmap)
         {
@@ -79,6 +91,17 @@ namespace LimaVector.Shape
                 y += vertice.Y;
             }
             GravityCenter = new PointF(x / n, y / n);
+        }
+
+        public void Highlight()
+        {
+            for(int i = 0; i< Vertices.Count(); i++)
+            {
+                // Vertices[i].X, vertices.Y - нарисовать кружочек или квадратик 
+                // с центром в этой точке и с радиусом, равным
+                // PenWidth/2.  Graphics Серый цвет. 
+            }
+            // в центре фигуры тоже такую штучку
         }
     }
 }
