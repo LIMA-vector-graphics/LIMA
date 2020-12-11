@@ -47,7 +47,7 @@ namespace LimaVector.Shape
         }
 
 
-        public Bitmap Paint(Bitmap bitmap)
+        public virtual Bitmap Paint(Bitmap bitmap)
         {
             Pen pen = new Pen(Color, PenWidth);
             Graphics graphics = Graphics.FromImage(bitmap);

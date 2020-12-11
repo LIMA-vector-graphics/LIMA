@@ -9,6 +9,6 @@ namespace LimaVector.Fabrics
 {
     public interface IFabric
     {
-        Shape.AShape CreateShape();
+        AShape CreateShape();
     }
 }

@@ -18,10 +18,6 @@ namespace LimaVector.Shape
                 new PointF(startPoint.X, endPoint.Y),
                 endPoint
             };
-
-
         }
-      
-
     }
 }
