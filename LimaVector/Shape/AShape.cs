@@ -55,15 +55,15 @@ namespace LimaVector.Shape
             return bitmap;
         }
 
-        public void Resize (PointF dif)
+        public void Resize (float alpha)
         {
             for (int i = 0; i < Vertices.Count(); i++)
             {
                 PointF vertice = Vertices[i];
                 PointF d = new PointF(vertice.X - GravityCenter.X, vertice.Y - GravityCenter.Y);
 
-                Vertices[i] = new PointF(GravityCenter.X+ dif.X, GravityCenter.Y + dif.Y);
-
+                Vertices[i] = new PointF(GravityCenter.X + alpha * (vertice.X - GravityCenter.X),
+                    GravityCenter.Y + alpha * (vertice.Y - GravityCenter.Y));
             }
         }
 

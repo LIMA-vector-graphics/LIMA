@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +47,6 @@ namespace LimaVector.Shape
                     break;
             }
         }
-
         public override Bitmap Paint(Bitmap bitmap) //PointF location)
         {
         // линия или две лиинии в зависимости от кол-ва вершин
@@ -69,6 +68,4 @@ namespace LimaVector.Shape
             return bitmap;
         }
     }
-
-
 }

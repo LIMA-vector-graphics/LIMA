@@ -85,8 +85,8 @@ namespace LimaVector
                         GC.Collect();
                         break;
                     case "resize":
-                        PointF dif = Delta(currentShape.GravityCenter, e.Location);
-                        currentShape.Resize(dif);
+                        float alpha = GetAlpha(currentShape.GravityCenter, point, e.Location);
+                        currentShape.Resize(alpha);
                         tmpBitmap = (Bitmap)mainBitmap.Clone();
                         pictureBox1.Image = currentShape.Paint(tmpBitmap);
                         point = e.Location;
@@ -112,6 +112,13 @@ namespace LimaVector
                     //break;
                 }
             }
+        }
+
+        private float GetAlpha(PointF center, PointF point, Point location)
+        {
+            PointF a = Delta(center, point);
+            PointF b = Delta(center, location);
+            return GetLength(b) / GetLength(a);
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -333,9 +340,9 @@ namespace LimaVector
 
             return sign * Math.Acos((a.X * b.X + a.Y * b.Y) / GetLength(a) / GetLength(b));
         }
-        private double GetLength(PointF vector)
+        private float GetLength(PointF vector)
         {
-            return Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+            return (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
         }
 
         private PointF Delta(PointF start, PointF end)
