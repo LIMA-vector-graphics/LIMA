@@ -64,8 +64,18 @@ namespace LimaVector
                         if (currentShape is PolygonShape)
                         { }
                         if (currentShape is CurveShape)
-                        { }
+                        {
 
+                            //graphics = Graphics.FromImage(mainBitmap);
+                            //graphics.DrawLine(pen, point, e.Location);
+                            //pictureBox1.Image = mainBitmap;
+                            //point = e.Location;
+
+                            //tmpBitmap = (Bitmap)mainBitmap.Clone();
+                            currentShape.UpdateVertices(e.Location);
+                            pictureBox1.Image = currentShape.Paint(mainBitmap);
+                            GC.Collect();
+                        }
                         break;
 
                     case "rotate":
@@ -164,13 +174,17 @@ namespace LimaVector
             if (_action == "paint")
 
             {
-                if (!(currentShape is TriangleThreePoints) || currentShape == null)
+                if (!(currentShape is TriangleThreePoints) || !(currentShape == null))
                 {
                     currentShape = fabric.CreateShape();
                     currentShape.Color = pen.Color;
                     currentShape.PenWidth = (int)pen.Width;
                 }
                 if (currentShape is TriangleThreePoints)
+                {
+                    currentShape.UpdateVertices(e.Location);// не заходит в метод не обнавляет вершины
+                }
+                if(currentShape is CurveShape)
                 {
                     currentShape.UpdateVertices(e.Location);
                 }
@@ -245,8 +259,9 @@ namespace LimaVector
 
         private void Curve_Click(object sender, EventArgs e)
         {
-            _action = "curve";
+            _action = "paint";
             fabric = new CurveFabric();
+            currentShape = fabric.CreateShape();
         }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)

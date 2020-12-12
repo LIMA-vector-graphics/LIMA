@@ -49,7 +49,9 @@ namespace LimaVector.Shape
 
         public virtual Bitmap Paint(Bitmap bitmap)
         {
-            Pen pen = new Pen(Color, PenWidth);
+            Pen pen = new Pen(Color, PenWidth); //Brushes
+            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             Graphics graphics = Graphics.FromImage(bitmap);
             graphics.DrawPolygon(pen, Vertices.ToArray());
             return bitmap;

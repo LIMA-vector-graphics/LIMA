@@ -22,30 +22,27 @@ namespace LimaVector.Shape
 
         public override void UpdateVertices(PointF location)
         {
-            if (NumberOfVertices >=3)
+            if (NumberOfVertices == 0)
+            {
+                Vertices[0] = location;
+                NumberOfVertices = 1;
+            }
+            else if (NumberOfVertices == 1)
+            {
+                Vertices[1] = location; // добавили точку в вершину
+                NumberOfVertices = 2;
+            }
+            else if (NumberOfVertices == 2)
+            {
+                NumberOfVertices = 3;
+                Vertices[2] = location; // оказывается две точки с одинаковыми координатами
+            }
+            else
             {
                 Vertices.Clear();
                 NumberOfVertices = 0;
             }
-            switch (NumberOfVertices)
-            {
 
-                case 0:
-                    Vertices[0]=location;
-                    NumberOfVertices = 1;
-                    break;
-
-                case 1:
-                    Vertices[1] = location; // добавили точку в вершину
-                    NumberOfVertices = 2;
-                    break;
-
-                case 2:
-                    NumberOfVertices = 3;
-                    Vertices[2] = location; 
-                  
-                    break;
-            }
         }
         public override Bitmap Paint(Bitmap bitmap) //PointF location)
         {
