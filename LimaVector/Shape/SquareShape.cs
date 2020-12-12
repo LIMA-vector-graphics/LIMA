@@ -28,15 +28,15 @@ namespace LimaVector.Shape
 
         }
 
-        public override bool Equals(object obj)
-        {
-            SquareShape square = (SquareShape)obj;
-                if(!Color.Equals(square.Color)|| Width!=square.Width || !Points.Equals(square.Points))
-            {
-                return false;
-            }
-            return true;
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    SquareShape square = (SquareShape)obj;
+        //        if(!Color.Equals(square.Color)|| Width!=square.Width || !Points.Equals(square.Points))
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
     }
 }

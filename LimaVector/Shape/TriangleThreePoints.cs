@@ -22,6 +22,23 @@ namespace LimaVector.Shape
 
         public override void UpdateVertices(PointF location)
         {
+           
+             if (NumberOfVertices == 1)
+            {
+                Vertices[1] = location; // добавили точку в вершину
+              
+            }
+            else if (NumberOfVertices == 2)
+            {
+                
+                Vertices[2] = location; // оказывается две точки с одинаковыми координатами
+            }
+          
+
+        }
+
+        public void AddVertices(PointF location)
+        {
             if (NumberOfVertices == 0)
             {
                 Vertices[0] = location;
@@ -37,13 +54,10 @@ namespace LimaVector.Shape
                 NumberOfVertices = 3;
                 Vertices[2] = location; // оказывается две точки с одинаковыми координатами
             }
-            else
-            {
-                Vertices.Clear();
-                NumberOfVertices = 0;
-            }
+           
 
         }
+
         public override Bitmap Paint(Bitmap bitmap) //PointF location)
         {
         // линия или две лиинии в зависимости от кол-ва вершин
@@ -52,15 +66,23 @@ namespace LimaVector.Shape
                 Graphics graphics = Graphics.FromImage(bitmap);
 
                 switch (NumberOfVertices)
+
                 {
-                    case 2:
+                
+                    case 1:
                         graphics.DrawLine(pen, Vertices[0], Vertices[1]);
                         break;
-                    case 3:
+                    case 2:
+                        graphics.DrawLine(pen, Vertices[0], Vertices[1]);
                         graphics.DrawLine(pen, Vertices[1], Vertices[2]);
                         graphics.DrawLine(pen, Vertices[2], Vertices[0]);
-                        break;
-                }
+                    break;
+                    case 3:
+                        graphics.DrawLine(pen, Vertices[0], Vertices[1]);
+                        graphics.DrawLine(pen, Vertices[1], Vertices[2]);
+                        graphics.DrawLine(pen, Vertices[2], Vertices[0]);
+                    break;
+            }
 
             return bitmap;
         }
