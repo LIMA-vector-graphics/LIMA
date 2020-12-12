@@ -12,12 +12,11 @@ namespace LimaVector.Shape
         public List<PointF> Vertices;
         public PointF GravityCenter;
         public Color Color;
+        public int Width;
         public int PenWidth;
         public int NumberOfVertices;
-        public int SelectedVerticeIndex = -1;
-
         public List<PointF> Points;
-       
+        public int SelectedVerticeIndex = -1;
         public int SelectedEdgeIndex = -1;
         public bool isVerticeSelected 
         { 

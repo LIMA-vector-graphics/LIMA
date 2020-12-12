@@ -145,45 +145,13 @@ namespace LimaVector
             point = e.Location;
             mD = true;
 
-            //if (_action == "Triangle") // выбранный режим
-            //{
-            //    if (!(currentShape is TriangleThreePoints) || currentShape == null)
-            //    {
-            //        currentShape = fabric.CreateShape();
-            //        currentShape.Color = pen.Color;
-            //        currentShape.PenWidth = (int)pen.Width;
-            //    }
-
-                //switch (currentShape.NumberOfVertices)
-                //{
-                //    case 0:
-                //        currentShape.Vertices.Add(e.Location);
-                //        currentShape.NumberOfVertices = 1;
-                //        break;
-
-                //    case 1:
-                //        currentShape.Vertices.Add(e.Location); // добавили точку в вершину
-                //        graphics = Graphics.FromImage(mainBitmap);
-                //        graphics.DrawLine(pen, currentShape.Vertices[0], e.Location);
-                //        currentShape.NumberOfVertices = 2;
-                //        pictureBox1.Image = mainBitmap;
-                //        break;
-
-                //    case 2:
-                //        graphics = Graphics.FromImage(mainBitmap);
-                //        graphics.DrawLine(pen, currentShape.Vertices[0], e.Location);
-                //        graphics.DrawLine(pen, currentShape.Vertices[1], e.Location);
-                //        pictureBox1.Image = mainBitmap;
-                //        currentShape.NumberOfVertices = 0;
-                //        currentShape.Vertices.Clear();
-                //        break;
-            //}
 
             
             if (_action == "paint")
 
             {
-                if (!(currentShape is TriangleThreePoints) || !(currentShape == null))
+                if (!(currentShape is TriangleThreePoints)|| !(fabric is TriangleThreePointsFabric)||
+                    ((currentShape is TriangleThreePoints) && currentShape.NumberOfVertices ==3))                      //|| !(currentShape == null))
                 {
                     currentShape = fabric.CreateShape();
                     currentShape.Color = pen.Color;
@@ -191,7 +159,7 @@ namespace LimaVector
                 }
                 if (currentShape is TriangleThreePoints)
                 {
-                    currentShape.UpdateVertices(e.Location);// не заходит в метод не обнавляет вершины
+                    ((TriangleThreePoints)currentShape).AddVertices(e.Location);// не заходит в метод не обнавляет вершины
                 }
                 if(currentShape is CurveShape)
                 {
@@ -228,9 +196,21 @@ namespace LimaVector
             if (_action == "paint" || _action == "rotate" ||  _action == "move" || 
                                             _action == "resize" || _action == "select")
             {
+             
                 mD = false;
-                mainBitmap = tmpBitmap;
-                shapes.Add(currentShape);
+
+                if ((currentShape is TriangleThreePoints) && currentShape.NumberOfVertices == 2)
+                {
+                    ((TriangleThreePoints)currentShape).AddVertices(e.Location);
+                }
+
+                    if (!(currentShape is TriangleThreePoints) || currentShape.NumberOfVertices == 3)
+                {
+                    mainBitmap = tmpBitmap;
+                    shapes.Add(currentShape);
+                }
+
+
             }
         }
 
