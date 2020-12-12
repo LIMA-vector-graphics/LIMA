@@ -15,6 +15,9 @@ namespace LimaVector.Shape
         public int PenWidth;
         public int NumberOfVertices;
         public int SelectedVerticeIndex = -1;
+
+        public List<PointF> Points;
+       
         public int SelectedEdgeIndex = -1;
         public bool isVerticeSelected 
         { 
@@ -36,6 +39,7 @@ namespace LimaVector.Shape
         {
             return Vertices.ToArray();
         }
+
         public abstract void UpdateVertices(PointF startPoint, PointF endPoint);
 
         public abstract void UpdateVertices(PointF location);
@@ -125,10 +129,20 @@ namespace LimaVector.Shape
         {
             for(int i = 0; i< Vertices.Count(); i++)
             {
+                PointF vertice = Vertices[i];
+
+                //PointF vertice = new PointF(Vertices[i].X, Vertices[i].Y);
+
+                //Pen pen = new Pen(Color, PenWidth);
+                //Graphics graphics = Graphics.FromImage();
+                //graphics.DrawEllipse (pen, Vertices[i].X, Vertices[i].Y);
+
+
                 // Vertices[i].X, vertices.Y - нарисовать кружочек или квадратик 
                 // с центром в этой точке и с радиусом, равным
                 // PenWidth/2.  Graphics Серый цвет. 
             }
+
             // в центре фигуры тоже такую штучку
         }
 

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LimaVector.Fabrics
 {
-    class SquareFabric : IFabric
+    public class SquareFabric : IFabric
     {
-        public Shape.AShape CreateShape()
+        public AShape CreateShape()
         {
             return new SquareShape();
         }
