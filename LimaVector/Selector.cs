@@ -72,9 +72,15 @@ namespace LimaVector
         }
         public void ClearSelection()
         {
-            foreach(AShape shape in _shapes)
+            if (_shapes != null)
             {
-                shape.ClearSelection();
+                foreach (AShape shape in _shapes)
+                {
+                    if(shape != null) 
+                    {
+                        shape.ClearSelection();
+                    }
+                }
             }
         }
     }

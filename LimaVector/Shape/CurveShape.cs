@@ -23,15 +23,14 @@ namespace LimaVector.Shape
         {
             Vertices.Add(location);
         }
-        public override Bitmap Paint(Bitmap bitmap)
+        public override void Paint(Canvas canvas)
         {
             NumberOfVertices = Vertices.Count();
             Pen pen = new Pen(Brushes.Black, 16); 
             pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-            Graphics graphics = Graphics.FromImage(bitmap);
+            Graphics graphics = Graphics.FromImage(canvas.bitmap);
             graphics.DrawLine(pen,Vertices.LastOrDefault(),Vertices[NumberOfVertices-2]);
-            return bitmap;
         }
     }
 }
