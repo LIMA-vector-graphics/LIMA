@@ -52,10 +52,20 @@ namespace LimaVector.Shape
             Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
             UpdateCenter();
         }
+
         public void MoveEdge(PointF delta) // moving vertice with certain index
         {
-            int index = SelectedVerticeIndex;
+            int index = SelectedEdgeIndex;
             Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
+            if(index < Vertices.Count() - 1)
+            {
+                Vertices[index + 1] = new PointF(Vertices[index + 1].X + delta.X, Vertices[index + 1].Y + delta.Y);
+            }
+            else
+            {
+                Vertices[0] = new PointF(Vertices[0].X + delta.X, Vertices[0].Y + delta.Y);
+            }
+
             UpdateCenter();
         }
 

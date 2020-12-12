@@ -187,6 +187,7 @@ namespace LimaVector
             }
             if(_action == "selectVertice")
             {
+                
                 Selector selector = new Selector(mainBitmap, shapes);
                 currentShape = selector.SelectVertice(e.Location);
                 shapes.Remove(currentShape);
@@ -366,5 +367,6 @@ namespace LimaVector
         {
             _action = "selectVertice";
         }
+ 
     }
 }
