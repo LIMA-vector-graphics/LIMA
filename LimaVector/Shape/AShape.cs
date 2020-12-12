@@ -87,14 +87,13 @@ namespace LimaVector.Shape
             UpdateCenter();
         }
 
-        public virtual Bitmap Paint(Bitmap bitmap)
+
+        public virtual void Paint(Canvas canvas)
         {
             Pen pen = new Pen(Color, PenWidth);
-            Graphics graphics = Graphics.FromImage(bitmap);
+            Graphics graphics = Graphics.FromImage(canvas.bitmap);
             graphics.DrawPolygon(pen, Vertices.ToArray());
-            return bitmap;
         }
-
         public void Resize (float alpha)
         {
             for (int i = 0; i < Vertices.Count(); i++)

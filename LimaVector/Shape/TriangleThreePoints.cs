@@ -44,25 +44,23 @@ namespace LimaVector.Shape
             }
 
         }
-        public override Bitmap Paint(Bitmap bitmap) //PointF location)
+        public override void Paint(Canvas canvas) //PointF location)
         {
         // линия или две лиинии в зависимости от кол-ва вершин
        
-                Pen pen = new Pen(Color, PenWidth);
-                Graphics graphics = Graphics.FromImage(bitmap);
+            Pen pen = new Pen(Color, PenWidth);
+            Graphics graphics = Graphics.FromImage(canvas.bitmap);
 
-                switch (NumberOfVertices)
-                {
-                    case 2:
-                        graphics.DrawLine(pen, Vertices[0], Vertices[1]);
-                        break;
-                    case 3:
-                        graphics.DrawLine(pen, Vertices[1], Vertices[2]);
-                        graphics.DrawLine(pen, Vertices[2], Vertices[0]);
-                        break;
-                }
-
-            return bitmap;
+            switch (NumberOfVertices)
+            {
+                case 2:
+                    graphics.DrawLine(pen, Vertices[0], Vertices[1]);
+                    break;
+                case 3:
+                    graphics.DrawLine(pen, Vertices[1], Vertices[2]);
+                    graphics.DrawLine(pen, Vertices[2], Vertices[0]);
+                    break;
+            }
         }
     }
 }

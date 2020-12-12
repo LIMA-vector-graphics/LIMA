@@ -56,11 +56,12 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pictureBox1.Location = new System.Drawing.Point(115, 45);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(881, 467);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -70,7 +71,7 @@
             // Rectangle
             // 
             this.Rectangle.Location = new System.Drawing.Point(18, 45);
-            this.Rectangle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Rectangle.Margin = new System.Windows.Forms.Padding(2);
             this.Rectangle.Name = "Rectangle";
             this.Rectangle.Size = new System.Drawing.Size(70, 37);
             this.Rectangle.TabIndex = 1;
@@ -81,7 +82,7 @@
             // Square
             // 
             this.Square.Location = new System.Drawing.Point(18, 86);
-            this.Square.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Square.Margin = new System.Windows.Forms.Padding(2);
             this.Square.Name = "Square";
             this.Square.Size = new System.Drawing.Size(58, 37);
             this.Square.TabIndex = 2;
@@ -92,7 +93,7 @@
             // Line
             // 
             this.Line.Location = new System.Drawing.Point(18, 128);
-            this.Line.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Line.Margin = new System.Windows.Forms.Padding(2);
             this.Line.Name = "Line";
             this.Line.Size = new System.Drawing.Size(58, 37);
             this.Line.TabIndex = 3;
@@ -103,7 +104,7 @@
             // Triangel
             // 
             this.Triangel.Location = new System.Drawing.Point(18, 169);
-            this.Triangel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Triangel.Margin = new System.Windows.Forms.Padding(2);
             this.Triangel.Name = "Triangel";
             this.Triangel.Size = new System.Drawing.Size(58, 37);
             this.Triangel.TabIndex = 4;
@@ -114,7 +115,7 @@
             // Curve
             // 
             this.Curve.Location = new System.Drawing.Point(18, 210);
-            this.Curve.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Curve.Margin = new System.Windows.Forms.Padding(2);
             this.Curve.Name = "Curve";
             this.Curve.Size = new System.Drawing.Size(58, 37);
             this.Curve.TabIndex = 5;
@@ -147,7 +148,7 @@
             // BrokenLine
             // 
             this.BrokenLine.Location = new System.Drawing.Point(18, 375);
-            this.BrokenLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BrokenLine.Margin = new System.Windows.Forms.Padding(4);
             this.BrokenLine.Name = "BrokenLine";
             this.BrokenLine.Size = new System.Drawing.Size(77, 48);
             this.BrokenLine.TabIndex = 8;
@@ -159,7 +160,7 @@
             // RegularPolygon
             // 
             this.RegularPolygon.Location = new System.Drawing.Point(18, 300);
-            this.RegularPolygon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegularPolygon.Margin = new System.Windows.Forms.Padding(4);
             this.RegularPolygon.Name = "RegularPolygon";
             this.RegularPolygon.Size = new System.Drawing.Size(58, 42);
             this.RegularPolygon.TabIndex = 9;
@@ -178,7 +179,7 @@
             // Color
             // 
             this.Color.Location = new System.Drawing.Point(168, 4);
-            this.Color.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Color.Margin = new System.Windows.Forms.Padding(2);
             this.Color.Name = "Color";
             this.Color.Size = new System.Drawing.Size(70, 37);
             this.Color.TabIndex = 7;
@@ -189,7 +190,7 @@
             // TriangleThreePoints
             // 
             this.TriangleThreePoints.Location = new System.Drawing.Point(17, 428);
-            this.TriangleThreePoints.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TriangleThreePoints.Margin = new System.Windows.Forms.Padding(2);
             this.TriangleThreePoints.Name = "TriangleThreePoints";
             this.TriangleThreePoints.Size = new System.Drawing.Size(93, 68);
             this.TriangleThreePoints.TabIndex = 8;
@@ -200,7 +201,7 @@
             // Polygon
             // 
             this.Polygon.Location = new System.Drawing.Point(18, 4);
-            this.Polygon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Polygon.Margin = new System.Windows.Forms.Padding(2);
             this.Polygon.Name = "Polygon";
             this.Polygon.Size = new System.Drawing.Size(70, 37);
             this.Polygon.TabIndex = 11;
@@ -212,7 +213,7 @@
             // ClearAll
             // 
             this.ClearAll.Location = new System.Drawing.Point(250, 4);
-            this.ClearAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClearAll.Margin = new System.Windows.Forms.Padding(2);
             this.ClearAll.Name = "ClearAll";
             this.ClearAll.Size = new System.Drawing.Size(70, 37);
             this.ClearAll.TabIndex = 12;
@@ -285,7 +286,7 @@
             this.Controls.Add(this.Square);
             this.Controls.Add(this.Rectangle);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
