@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -91,8 +91,9 @@ namespace LimaVector.Shape
                 y += vertice.Y;
             }
             GravityCenter = new PointF(x / n, y / n);
-        }
 
+        }
+    
         public void Highlight()
         {
             for(int i = 0; i< Vertices.Count(); i++)
@@ -105,3 +106,4 @@ namespace LimaVector.Shape
         }
     }
 }
+
