@@ -103,9 +103,17 @@ namespace LimaVector
                         point = e.Location;
                         GC.Collect();
                         break;
-                    case "selectVertice":
+                    case "select":
                         delta = point.Delta(e.Location);
-                        currentShape.MoveVertice(delta);
+                        if (currentShape.isVerticeSelected) 
+                        { 
+                            currentShape.MoveVertice(delta);
+                        }
+                        else if (currentShape.isEdgeSelected)
+                        {
+                            currentShape.MoveEdge(delta);
+                        }
+
                         tmpBitmap = (Bitmap)mainBitmap.Clone();
                         pictureBox1.Image = currentShape.Paint(tmpBitmap);
                         point = e.Location;
@@ -199,11 +207,16 @@ namespace LimaVector
                 shapes.Remove(currentShape);
                 PaintAll();
             }
-            if(_action == "selectVertice")
+            if(_action == "select")
             {
                 
                 Selector selector = new Selector(mainBitmap, shapes);
+                selector.ClearSelection();
                 currentShape = selector.SelectVertice(e.Location);
+                if(currentShape == null)
+                {
+                    currentShape = selector.Select(e.Location);
+                }
                 shapes.Remove(currentShape);
                 PaintAll();
             }
@@ -212,12 +225,8 @@ namespace LimaVector
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_action == "paint" || 
-                _action == "rotate" || 
-                _action == "move" || 
-                _action == "resize" || 
-                _action == "selectVertice"
-                )
+            if (_action == "paint" || _action == "rotate" ||  _action == "move" || 
+                                            _action == "resize" || _action == "select")
             {
                 mD = false;
                 mainBitmap = tmpBitmap;
@@ -380,7 +389,7 @@ namespace LimaVector
 
         private void SelectVertice_Click(object sender, EventArgs e)
         {
-            _action = "selectVertice";
+            _action = "select";
         }
  
     }

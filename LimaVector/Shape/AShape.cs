@@ -16,6 +16,21 @@ namespace LimaVector.Shape
         public int NumberOfVertices;
         public int SelectedVerticeIndex = -1;
         public int SelectedEdgeIndex = -1;
+        public bool isVerticeSelected 
+        { 
+            get 
+            { 
+                return SelectedVerticeIndex >= 0; 
+            }
+        }
+        public bool isEdgeSelected
+        {
+            get
+            {
+                return SelectedEdgeIndex >= 0;
+            }
+        }
+
 
         public PointF[] GetPoints()
         {
@@ -56,14 +71,17 @@ namespace LimaVector.Shape
         public void MoveEdge(PointF delta) // moving vertice with certain index
         {
             int index = SelectedEdgeIndex;
+            NumberOfVertices = Vertices.Count();
             Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
-            if(index < Vertices.Count() - 1)
+            if(index == 0)
             {
-                Vertices[index + 1] = new PointF(Vertices[index + 1].X + delta.X, Vertices[index + 1].Y + delta.Y);
+                Vertices[NumberOfVertices - 1] = 
+                        new PointF(Vertices[NumberOfVertices - 1].X + delta.X, 
+                                Vertices[NumberOfVertices - 1].Y + delta.Y);
             }
             else
             {
-                Vertices[0] = new PointF(Vertices[0].X + delta.X, Vertices[0].Y + delta.Y);
+                Vertices[index - 1] = new PointF(Vertices[index - 1].X + delta.X, Vertices[index - 1].Y + delta.Y);
             }
 
             UpdateCenter();
@@ -112,6 +130,12 @@ namespace LimaVector.Shape
                 // PenWidth/2.  Graphics Серый цвет. 
             }
             // в центре фигуры тоже такую штучку
+        }
+
+        public void ClearSelection()
+        {
+            SelectedVerticeIndex = -1;
+            SelectedEdgeIndex = -1;
         }
     }
 }
