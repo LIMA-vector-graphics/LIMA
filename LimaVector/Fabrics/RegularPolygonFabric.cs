@@ -16,7 +16,7 @@ namespace LimaVector.Fabrics
             numberOfVertices = N;
         }
 
-        public Shape.AShape CreateShape()
+        public AShape CreateShape()
         {
             return new RegularPolygonShape(numberOfVertices);
         }
