@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LimaVector
 {
-    class Selector
+    public class Selector
     {
         Bitmap _bitmap;
         List<AShape> _shapes;

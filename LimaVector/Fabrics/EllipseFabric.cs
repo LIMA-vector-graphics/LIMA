@@ -9,7 +9,7 @@ namespace LimaVector.Fabrics
 {
     public class EllipseFabric : IFabric
     {
-        public Shape.AShape CreateShape()
+        public AShape CreateShape()
         {
             return new EllipseShape();
         }

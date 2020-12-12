@@ -9,7 +9,7 @@ namespace LimaVector.Fabrics
 {
     class TriangleFabric : IFabric
     {
-        public Shape.AShape CreateShape()
+        public AShape CreateShape()
         {
             return new TriangleShape();
         }
