@@ -21,26 +21,27 @@ namespace LimaVector
 
         public AShape Select(PointF point)
         {
-            if(_shapes.Count() == 0)
+            if (_shapes.Count() == 0)
             {
                 return null;
             }
-            foreach(AShape shape in _shapes)
+            foreach (AShape shape in _shapes)
             {
-                if(shape!= null)
+                if (shape != null)
                 {
-                    PointF previousVertice = shape.Vertices[shape.Vertices.Count - 1];
-                    for(int i=0; i < shape.Vertices.Count; i++)
+                    PointF previousVertice = shape.Vertices[shape.Vertices.Count() - 1];
+                    for (int i = 0; i < shape.Vertices.Count; i++)
                     {
                         if (point.Belongs(shape.Vertices[i], previousVertice, shape.PenWidth))
                         {
                             shape.Highlight();
+                            shape.SelectedEdgeIndex = i;
                             return shape;
                         }
                         previousVertice = shape.Vertices[i];
                     }
                 }
-                
+
             }
             return null;
         }
@@ -55,9 +56,9 @@ namespace LimaVector
             {
                 if (shape != null)
                 {
-                    for (int i = 0; i < shape.Vertices.Count; i++)
+                    for (int i = 0; i < shape.Vertices.Count(); i++)
                     {
-                        if(shape.Vertices[i].Equals(point, shape.PenWidth))
+                        if (shape.Vertices[i].Equals(point, shape.PenWidth))
                         {
                             shape.Highlight();
                             shape.SelectedVerticeIndex = i;
@@ -69,10 +70,12 @@ namespace LimaVector
             }
             return null;
         }
-
-        private Tuple<AShape, int> Tuple(AShape shape, int i)
+        public void ClearSelection()
         {
-            throw new NotImplementedException();
+            foreach(AShape shape in _shapes)
+            {
+                shape.ClearSelection();
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +15,31 @@ namespace LimaVector.Shape
         public int PenWidth;
         public int NumberOfVertices;
         public int SelectedVerticeIndex = -1;
-        public int SelectedEdgeIndex = -1;
+
         public List<PointF> Points;
-        public int Width { get; set; }
+       
+        public int SelectedEdgeIndex = -1;
+        public bool isVerticeSelected 
+        { 
+            get 
+            { 
+                return SelectedVerticeIndex >= 0; 
+            }
+        }
+        public bool isEdgeSelected
+        {
+            get
+            {
+                return SelectedEdgeIndex >= 0;
+            }
+        }
+
 
         public PointF[] GetPoints()
         {
             return Vertices.ToArray();
         }
+
         public abstract void UpdateVertices(PointF startPoint, PointF endPoint);
 
         public abstract void UpdateVertices(PointF location);
@@ -54,10 +71,23 @@ namespace LimaVector.Shape
             Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
             UpdateCenter();
         }
+
         public void MoveEdge(PointF delta) // moving vertice with certain index
         {
-            int index = SelectedVerticeIndex;
+            int index = SelectedEdgeIndex;
+            NumberOfVertices = Vertices.Count();
             Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
+            if(index == 0)
+            {
+                Vertices[NumberOfVertices - 1] = 
+                        new PointF(Vertices[NumberOfVertices - 1].X + delta.X, 
+                                Vertices[NumberOfVertices - 1].Y + delta.Y);
+            }
+            else
+            {
+                Vertices[index - 1] = new PointF(Vertices[index - 1].X + delta.X, Vertices[index - 1].Y + delta.Y);
+            }
+
             UpdateCenter();
         }
 
@@ -94,7 +124,7 @@ namespace LimaVector.Shape
             }
             GravityCenter = new PointF(x / n, y / n);
         }
-
+    
         public void Highlight()
         {
             for(int i = 0; i< Vertices.Count(); i++)
@@ -114,6 +144,12 @@ namespace LimaVector.Shape
             }
 
             // в центре фигуры тоже такую штучку
+        }
+
+        public void ClearSelection()
+        {
+            SelectedVerticeIndex = -1;
+            SelectedEdgeIndex = -1;
         }
     }
 }

@@ -65,8 +65,18 @@ namespace LimaVector
                         if (currentShape is PolygonShape)
                         { }
                         if (currentShape is CurveShape)
-                        { }
+                        {
 
+                            //graphics = Graphics.FromImage(mainBitmap);
+                            //graphics.DrawLine(pen, point, e.Location);
+                            //pictureBox1.Image = mainBitmap;
+                            //point = e.Location;
+
+                            //tmpBitmap = (Bitmap)mainBitmap.Clone();
+                            currentShape.UpdateVertices(e.Location);
+                            pictureBox1.Image = currentShape.Paint(mainBitmap);
+                            GC.Collect();
+                        }
                         break;
 
                     case "rotate":
@@ -93,9 +103,17 @@ namespace LimaVector
                         point = e.Location;
                         GC.Collect();
                         break;
-                    case "selectVertice":
+                    case "select":
                         delta = point.Delta(e.Location);
-                        currentShape.MoveVertice(delta);
+                        if (currentShape.isVerticeSelected) 
+                        { 
+                            currentShape.MoveVertice(delta);
+                        }
+                        else if (currentShape.isEdgeSelected)
+                        {
+                            currentShape.MoveEdge(delta);
+                        }
+
                         tmpBitmap = (Bitmap)mainBitmap.Clone();
                         pictureBox1.Image = currentShape.Paint(tmpBitmap);
                         point = e.Location;
@@ -165,13 +183,17 @@ namespace LimaVector
             if (_action == "paint")
 
             {
-                if (!(currentShape is TriangleThreePoints) || currentShape == null)
+                if (!(currentShape is TriangleThreePoints) || !(currentShape == null))
                 {
                     currentShape = fabric.CreateShape();
                     currentShape.Color = pen.Color;
                     currentShape.PenWidth = (int)pen.Width;
                 }
                 if (currentShape is TriangleThreePoints)
+                {
+                    currentShape.UpdateVertices(e.Location);// не заходит в метод не обнавляет вершины
+                }
+                if(currentShape is CurveShape)
                 {
                     currentShape.UpdateVertices(e.Location);
                 }
@@ -185,10 +207,16 @@ namespace LimaVector
                 shapes.Remove(currentShape);
                 PaintAll();
             }
-            if(_action == "selectVertice")
+            if(_action == "select")
             {
+                
                 Selector selector = new Selector(mainBitmap, shapes);
+                selector.ClearSelection();
                 currentShape = selector.SelectVertice(e.Location);
+                if(currentShape == null)
+                {
+                    currentShape = selector.Select(e.Location);
+                }
                 shapes.Remove(currentShape);
                 PaintAll();
             }
@@ -197,12 +225,8 @@ namespace LimaVector
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_action == "paint" || 
-                _action == "rotate" || 
-                _action == "move" || 
-                _action == "resize" || 
-                _action == "selectVertice"
-                )
+            if (_action == "paint" || _action == "rotate" ||  _action == "move" || 
+                                            _action == "resize" || _action == "select")
             {
                 mD = false;
                 mainBitmap = tmpBitmap;
@@ -258,8 +282,9 @@ namespace LimaVector
 
         private void Curve_Click(object sender, EventArgs e)
         {
-            _action = "curve";
+            _action = "paint";
             fabric = new CurveFabric();
+            currentShape = fabric.CreateShape();
         }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -364,7 +389,8 @@ namespace LimaVector
 
         private void SelectVertice_Click(object sender, EventArgs e)
         {
-            _action = "selectVertice";
+            _action = "select";
         }
+ 
     }
 }
