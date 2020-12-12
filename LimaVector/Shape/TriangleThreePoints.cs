@@ -65,7 +65,6 @@ namespace LimaVector.Shape
             Graphics graphics = Graphics.FromImage(canvas.bitmap);
 
                 switch (NumberOfVertices)
-
                 {
                 
                     case 1:
@@ -82,8 +81,6 @@ namespace LimaVector.Shape
                         graphics.DrawLine(pen, Vertices[2], Vertices[0]);
                     break;
             }
-
-            return bitmap;
         }
     }
 }

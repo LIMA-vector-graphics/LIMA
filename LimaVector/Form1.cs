@@ -18,7 +18,7 @@ namespace LimaVector
         PointF point;
         bool mD;
         int NumberOfVertices;
-        
+
         List<AShape> shapes;
         string _action = ""; //// поле в котором будет храниться текущее действие
 
@@ -51,7 +51,7 @@ namespace LimaVector
                 switch (_action)
                 {
                     case "paint":
-                        if (currentShape is ADragShape) 
+                        if (currentShape is ADragShape)
                         {
                             canvas.Duplicate();
                             currentShape.UpdateVertices(point, e.Location);
@@ -63,7 +63,7 @@ namespace LimaVector
                         }
                         if (currentShape is PolygonShape)
                         {
-                                
+
                         }
                         if (currentShape is CurveShape)
                         {
@@ -93,8 +93,8 @@ namespace LimaVector
                         canvas.Duplicate();
                         delta = point.Delta(e.Location);
 
-                        if (currentShape.isVerticeSelected) 
-                        { 
+                        if (currentShape.isVerticeSelected)
+                        {
                             currentShape.MoveVertice(delta);
                         }
                         else
@@ -104,26 +104,9 @@ namespace LimaVector
                                 currentShape.MoveEdge(delta);
                             }
                         }
-                 
+
                         point = e.Location;
                         break;
-                        //case "Triangle":
-                        //    if (currentShape.NumberOfVertices != 0)
-                        //    {
-                        //        tmpBitmap = (Bitmap)mainBitmap.Clone();
-                        //        graphics = Graphics.FromImage(tmpBitmap);
-                        //        graphics.DrawLine(pen, point, e.Location);
-
-                        //        if (currentShape.NumberOfVertices == 2)
-                        //        {
-                        //            graphics.DrawLine(pen, currentShape.Vertices[0], e.Location);
-                        //        }
-                        //        pictureBox1.Image = tmpBitmap;
-                        //        GC.Collect();
-                        //blablablabl
-                        //blablabla
-                        //     }
-                        //break;
                 }
                 Display();
             }
@@ -135,12 +118,12 @@ namespace LimaVector
             mD = true;
 
 
-            
+
             if (_action == "paint")
 
             {
-                if (!(currentShape is TriangleThreePoints)|| !(fabric is TriangleThreePointsFabric)||
-                    ((currentShape is TriangleThreePoints) && currentShape.NumberOfVertices ==3))                      //|| !(currentShape == null))
+                if (!(currentShape is TriangleThreePoints) || !(fabric is TriangleThreePointsFabric) ||
+                    ((currentShape is TriangleThreePoints) && currentShape.NumberOfVertices == 3))                     
                 {
                     currentShape = fabric.CreateShape();
                     currentShape.Color = pen.Color;
@@ -148,29 +131,29 @@ namespace LimaVector
                 }
                 if (currentShape is TriangleThreePoints)
                 {
-                    ((TriangleThreePoints)currentShape).AddVertices(e.Location);// не заходит в метод не обнавляет вершины
+                    ((TriangleThreePoints)currentShape).AddVertices(e.Location);
                 }
-                if(currentShape is CurveShape)
+                if (currentShape is CurveShape)
                 {
                     currentShape.UpdateVertices(e.Location);
                 }
-             
+
             }
 
-            if(_action == "rotate" || _action == "move" || _action=="resize")
+            if (_action == "rotate" || _action == "move" || _action == "resize")
             {
                 Selector selector = new Selector(mainBitmap, shapes);
                 currentShape = selector.Select(e.Location);
                 shapes.Remove(currentShape);
                 DisplayAll();
             }
-            if(_action == "select")
+            if (_action == "select")
             {
-                
+
                 Selector selector = new Selector(mainBitmap, shapes);
                 selector.ClearSelection();
                 currentShape = selector.SelectVertice(e.Location);
-                if(currentShape == null)
+                if (currentShape == null)
                 {
                     currentShape = selector.Select(e.Location);
                 }
@@ -182,27 +165,30 @@ namespace LimaVector
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_action == "paint" || _action == "rotate" ||  _action == "move" || 
+            if (_action == "paint" || _action == "rotate" || _action == "move" ||
                                             _action == "resize" || _action == "select")
             {
-             
+
                 mD = false;
-                canvas.Update();
-                shapes.Add(currentShape);
-            }
+                //shapes.Add(currentShape);
 
-                if ((currentShape is TriangleThreePoints) && currentShape.NumberOfVertices == 2)
+                if (currentShape is TriangleThreePoints)
                 {
-                    ((TriangleThreePoints)currentShape).AddVertices(e.Location);
+                    if(currentShape.NumberOfVertices == 2)
+                    {
+                        ((TriangleThreePoints)currentShape).AddVertices(e.Location);
+                    }
+                    if(currentShape.NumberOfVertices == 3)
+                    {
+                        canvas.Update();
+                        shapes.Add(currentShape);
+                    }
                 }
-
-                    if (!(currentShape is TriangleThreePoints) || currentShape.NumberOfVertices == 3)
+                else
                 {
-                    mainBitmap = tmpBitmap;
+                    canvas.Update();
                     shapes.Add(currentShape);
                 }
-
-
             }
         }
 
@@ -308,7 +294,7 @@ namespace LimaVector
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if(_action == "polygon") 
+            if (_action == "polygon")
             {
                 graphics = Graphics.FromImage(mainBitmap);
                 graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
