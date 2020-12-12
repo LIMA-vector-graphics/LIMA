@@ -101,7 +101,6 @@ namespace LimaVector.Shape
                 y += vertice.Y;
             }
             GravityCenter = new PointF(x / n, y / n);
-
         }
     
         public void Highlight()
@@ -116,4 +115,3 @@ namespace LimaVector.Shape
         }
     }
 }
-
