@@ -14,7 +14,7 @@ namespace LimaVector
         public bool MODE_REPAINT = false;
         public Bitmap bitmap
         {
-            get => MODE_REPAINT? _tmpBitmap :_mainBitmap;
+            get => MODE_REPAINT ? _tmpBitmap : _mainBitmap;
         }
 
         public Canvas(int width, int height)
