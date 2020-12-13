@@ -10,22 +10,15 @@ namespace LimaVector
 {
     public partial class Form1 : Form
     {
-        Bitmap mainBitmap; //Основной слой на который будут копироваться все нарисованные фигуры
-        Bitmap tmpBitmap; // Копия основного слоя ImageBox на котором происходит процесс рисования
         Canvas canvas;
-        Graphics graphics;
         Pen pen;
         PointF point;
         bool mD;
         int NumberOfVertices;
-
         List<AShape> shapes;
-        string _action = ""; //// поле в котором будет храниться текущее действие
-
+        string _action = "";
         AShape currentShape;
-        PolygonShape polygon;
         IFabric fabric;
-
 
         public Form1()
         {
@@ -35,11 +28,11 @@ namespace LimaVector
         private void Form1_Load(object sender, EventArgs e)
         {
             shapes = new List<AShape>();
-            mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+           
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
 
-            pen = new Pen(System.Drawing.Color.Black, 16);
-            pictureBox1.Image = mainBitmap;
+            pen = new Pen(System.Drawing.Color.Black, 9);
+         
             numberOfVertices.Value = 5;
         }
 
@@ -142,21 +135,23 @@ namespace LimaVector
 
             if (_action == "rotate" || _action == "move" || _action == "resize")
             {
-                Selector selector = new Selector(mainBitmap, shapes);
+                Selector selector = new Selector(shapes);
                 currentShape = selector.Select(e.Location);
+                Display();
                 shapes.Remove(currentShape);
                 DisplayAll();
             }
             if (_action == "select")
             {
 
-                Selector selector = new Selector(mainBitmap, shapes);
+                Selector selector = new Selector(shapes);
                 selector.ClearSelection();
                 currentShape = selector.SelectVertice(e.Location);
                 if (currentShape == null)
                 {
                     currentShape = selector.Select(e.Location);
                 }
+                Display();
                 shapes.Remove(currentShape);
                 DisplayAll();
             }
@@ -196,21 +191,21 @@ namespace LimaVector
         {
             if (_action == "Polygon")
             {
-                if (polygon.NumberOfVertices == 0)
-                {
-                    polygon.Vertices.Add(e.Location);
+                //if (polygon.NumberOfVertices == 0)
+                //{
+                    //polygon.Vertices.Add(e.Location);
 
-                    graphics = Graphics.FromImage(mainBitmap);
-                    polygon.NumberOfVertices++;
-                }
-                else
-                {
-                    graphics = Graphics.FromImage(mainBitmap);
-                    graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-                    polygon.NumberOfVertices++;
-                    polygon.Vertices.Add(e.Location);//записали в массив новую точку 
-                    pictureBox1.Image = mainBitmap;
-                }
+                    //graphics = Graphics.FromImage(mainBitmap);
+                    //polygon.NumberOfVertices++;
+                //}
+                //else
+                //{
+                    //graphics = Graphics.FromImage(mainBitmap);
+                    //graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
+                    //polygon.NumberOfVertices++;
+                    //polygon.Vertices.Add(e.Location);//записали в массив новую точку 
+                    //pictureBox1.Image = mainBitmap;
+                //}
             }
         }
 
@@ -256,7 +251,7 @@ namespace LimaVector
             fabric = new EllipseFabric();
         }
 
-        private void Polygon_Click(object sender, EventArgs e)
+        private void Polygon__Click(object sender, EventArgs e)
         {
             _action = "polygon";
             fabric = new PolygonFabric();
@@ -296,12 +291,12 @@ namespace LimaVector
         {
             if (_action == "polygon")
             {
-                graphics = Graphics.FromImage(mainBitmap);
-                graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-                graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
-                polygon.NumberOfVertices = 0;
-                polygon.Vertices.Clear();
-                pictureBox1.Image = mainBitmap;
+                //graphics = Graphics.FromImage(mainBitmap);
+                //graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
+                //graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
+                //polygon.NumberOfVertices = 0;
+                //polygon.Vertices.Clear();
+                //pictureBox1.Image = mainBitmap;
             }
 
         }
@@ -310,7 +305,7 @@ namespace LimaVector
         {
             canvas.Clear();
             shapes.Clear();
-            pictureBox1.Image = canvas.bitmap;
+            pictureBox1.Image = canvas.Bitmap;
         }
 
         private void Rotate_Click(object sender, EventArgs e)
@@ -328,29 +323,6 @@ namespace LimaVector
             _action = "move";
         }
 
-        public void DisplayAll()
-        {
-            canvas.Update();
-            canvas.Clear();
-
-            foreach (AShape shape in shapes)
-            {
-                if (shape != null)
-                {
-                    shape.Paint(canvas);
-                    pictureBox1.Image = canvas.bitmap;
-                }
-            }
-
-        }
-
-        private void Display()
-        {
-            currentShape.Paint(canvas);
-            pictureBox1.Image = canvas.bitmap;
-            GC.Collect();
-        }
-
         private void Resize_Click(object sender, EventArgs e)
         {
             _action = "resize";
@@ -365,5 +337,29 @@ namespace LimaVector
         {
 
         }
+
+        public void DisplayAll()
+        {
+            canvas.Update();
+            canvas.Clear();
+
+            foreach (AShape shape in shapes)
+            {
+                if (shape != null)
+                {
+                    shape.Paint(canvas);
+                    pictureBox1.Image = canvas.Bitmap;
+                }
+            }
+
+        }
+
+        private void Display()
+        {
+            currentShape.Paint(canvas);
+            pictureBox1.Image = canvas.Bitmap;
+            GC.Collect();
+        }
+
     }
 }
