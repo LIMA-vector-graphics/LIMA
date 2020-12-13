@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LimaVector.Fabrics
+namespace LimaVector.Factories
 {
-    class RegularPolygonFabric : IFabric
+    class RegularPolygonFactory : IFactory
     {
         int numberOfVertices;
 
-        public RegularPolygonFabric(int N)
+        public RegularPolygonFactory(int N)
         {
             numberOfVertices = N;
         }

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LimaVector.Fabrics
+namespace LimaVector.Factories
 {
-    class CurveFabric : IFabric
+    public class EllipseFactory : IFactory
     {
         public AShape CreateShape()
         {
-            return new CurveShape();
+            return new EllipseShape();
         }
     }
 }

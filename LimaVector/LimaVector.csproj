@@ -47,16 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Canvas.cs" />
-    <Compile Include="Fabrics\CurveFabric.cs" />
-    <Compile Include="Fabrics\EllipseFabric.cs" />
-    <Compile Include="Fabrics\IFabric.cs" />
-    <Compile Include="Fabrics\LineFabric.cs" />
-    <Compile Include="Fabrics\PolygonFabric.cs" />
-    <Compile Include="Fabrics\RectangleFabric.cs" />
-    <Compile Include="Fabrics\RegularPolygonFabric.cs" />
-    <Compile Include="Fabrics\SquareFabric.cs" />
-    <Compile Include="Fabrics\TriangleFabric.cs" />
-    <Compile Include="Fabrics\TriangleThreePointsFabric.cs" />
+    <Compile Include="Factories\CurveFactory.cs" />
+    <Compile Include="Factories\EllipseFactory.cs" />
+    <Compile Include="Factories\IFactory.cs" />
+    <Compile Include="Factories\LineFactory.cs" />
+    <Compile Include="Factories\PolygonFactory.cs" />
+    <Compile Include="Factories\RectangleFactory.cs" />
+    <Compile Include="Factories\RegularPolygonFactory.cs" />
+    <Compile Include="Factories\SquareFactory.cs" />
+    <Compile Include="Factories\TriangleFactory.cs" />
+    <Compile Include="Factories\TriangleThreePointsFactory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

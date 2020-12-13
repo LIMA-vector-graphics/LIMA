@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using LimaVector.Shape;
 
-namespace LimaVector.Fabrics
+namespace LimaVector.Factories
 {
-    class TriangleThreePointsFabric : IFabric
+    class TriangleThreePointsFactory : IFactory
     {
         public AShape CreateShape()
         {

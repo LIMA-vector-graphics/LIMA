@@ -5,13 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LimaVector.Fabrics
+namespace LimaVector.Factories
 {
-    class PolygonFabric : IFabric
+    public interface IFactory
     {
-        public AShape CreateShape()
-        {
-            return new PolygonShape();
-        }
+        AShape CreateShape();
     }
 }
