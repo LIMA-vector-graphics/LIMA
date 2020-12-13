@@ -65,24 +65,28 @@ namespace LimaVector
                         break;
 
                     case "rotate":
+                        DisplayAll();
                         double phi = currentShape.GravityCenter.GetRotationAngle(point, e.Location);
                         canvas.Duplicate();
                         currentShape.Rotate(phi);
                         point = e.Location;
                         break;
                     case "move":
+                        DisplayAll();
                         canvas.Duplicate();
                         delta = point.Delta(e.Location);
                         currentShape.Move(delta);
                         point = e.Location;
                         break;
                     case "resize":
+                        DisplayAll();
                         canvas.Duplicate();
                         float alpha = currentShape.GravityCenter.GetAlpha(point, e.Location);
                         currentShape.Resize(alpha);
                         point = e.Location;
                         break;
                     case "select":
+                        DisplayAll();
                         canvas.Duplicate();
                         delta = point.Delta(e.Location);
 
@@ -137,9 +141,7 @@ namespace LimaVector
             {
                 Selector selector = new Selector(shapes);
                 currentShape = selector.Select(e.Location);
-                Display();
                 shapes.Remove(currentShape);
-                DisplayAll();
             }
             if (_action == "select")
             {
@@ -150,9 +152,7 @@ namespace LimaVector
                 {
                     currentShape = selector.Select(e.Location);
                 }
-                Display();
                 shapes.Remove(currentShape);
-                DisplayAll();
             }
 
         }
