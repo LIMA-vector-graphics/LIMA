@@ -15,6 +15,7 @@ namespace LimaVector
         public Selector(List<AShape> shapes)
         {
             _shapes = shapes;
+            ClearSelection();
         }
 
         public AShape Select(PointF point)

@@ -145,7 +145,6 @@ namespace LimaVector
             {
 
                 Selector selector = new Selector(shapes);
-                selector.ClearSelection();
                 currentShape = selector.SelectVertice(e.Location);
                 if (currentShape == null)
                 {
