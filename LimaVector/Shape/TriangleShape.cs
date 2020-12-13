@@ -11,13 +11,13 @@ namespace LimaVector.Shape
     {
         override public void UpdateVertices(PointF startPoint, PointF endPoint)
         {
-
-            GravityCenter = new PointF((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
             Vertices = new List<PointF>() {
                 startPoint,
                 new PointF(startPoint.X, endPoint.Y),
                 endPoint
             };
+
+            UpdateCenter();
         }
     }
 }
