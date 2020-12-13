@@ -49,7 +49,7 @@ namespace LimaVector.Shape
             for(int i=0; i < Vertices.Count(); i++)
             {
                 PointF vertice = Vertices[i];
-                PointF delta = new PointF(vertice.X - GravityCenter.X, vertice.Y - GravityCenter.Y);
+                PointF delta = GravityCenter.Delta(vertice);
                 Vertices[i] = new PointF(
                     (float)(GravityCenter.X + delta.X * Math.Cos(phi) - delta.Y * Math.Sin(phi)),
                     (float)(GravityCenter.Y + delta.X * Math.Sin(phi) + delta.Y * Math.Cos(phi))

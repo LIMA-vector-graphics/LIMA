@@ -11,19 +11,9 @@ namespace LimaVector
     {
         public static double GetRotationAngle(this PointF center, PointF start, PointF end)
         {
-            PointF a = Delta(center, start);
-            PointF b = Delta(center, end);
-            return GetAngle(a, b);
-        }
-        private static double GetAngle(PointF a, PointF b) // a, b - vectors
-        {
-            int sign = Math.Sign(a.Y) * Math.Sign(a.X - b.X);
-            if (Math.Abs(a.Y) < 2 || Math.Abs(b.Y) < 2)
-            {
-                sign = Math.Sign(a.X) * Math.Sign(b.Y - a.Y);
-            }
-
-            return sign * Math.Acos((a.X * b.X + a.Y * b.Y) / a.GetLength() / b.GetLength());
+            PointF a = center.Delta(start);
+            PointF b = center.Delta(end);
+            return Math.Atan2(b.Y, b.X) - Math.Atan2(a.Y, a.X);
         }
         public static float GetLength(this PointF vector)
         {
