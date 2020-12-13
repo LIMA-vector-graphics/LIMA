@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.BrokenLine = new System.Windows.Forms.Button();
             this.numberOfVertices = new System.Windows.Forms.NumericUpDown();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,18 +76,6 @@
             this.hScrollBar1.Value = 1;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
-            // BrokenLine
-            // 
-            this.BrokenLine.Location = new System.Drawing.Point(130, 470);
-            this.BrokenLine.Margin = new System.Windows.Forms.Padding(4);
-            this.BrokenLine.Name = "BrokenLine";
-            this.BrokenLine.Size = new System.Drawing.Size(60, 50);
-            this.BrokenLine.TabIndex = 8;
-            this.BrokenLine.Text = "Broken Line";
-            this.BrokenLine.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.BrokenLine.UseVisualStyleBackColor = true;
-            this.BrokenLine.Click += new System.EventHandler(this.BrokenLine_Click);
-            // 
             // numberOfVertices
             // 
             this.numberOfVertices.Location = new System.Drawing.Point(34, 393);
@@ -102,7 +89,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(483, 61);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 15);
+            this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Resize";
             // 
@@ -111,7 +98,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(416, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 15);
+            this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 20;
             this.label2.Text = "Rotate";
             // 
@@ -120,7 +107,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(350, 61);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 15);
+            this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 21;
             this.label3.Text = "Move";
             // 
@@ -129,7 +116,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(634, 61);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 15);
+            this.label4.Size = new System.Drawing.Size(19, 13);
             this.label4.TabIndex = 22;
             this.label4.Text = "Fill";
             // 
@@ -138,7 +125,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(545, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 15);
+            this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 23;
             this.label5.Text = "Select Vertice";
             // 
@@ -147,7 +134,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(678, 61);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 15);
+            this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 24;
             this.label6.Text = "Clear All";
             // 
@@ -156,7 +143,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(838, 61);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 15);
+            this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 27;
             this.label7.Text = "Save";
             // 
@@ -165,7 +152,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(902, 61);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 15);
+            this.label8.Size = new System.Drawing.Size(50, 13);
             this.label8.TabIndex = 28;
             this.label8.Text = "Load File";
             // 
@@ -174,7 +161,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(286, 61);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 15);
+            this.label9.Size = new System.Drawing.Size(31, 13);
             this.label9.TabIndex = 29;
             this.label9.Text = "Color";
             // 
@@ -387,7 +374,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(111, 60);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 15);
+            this.label10.Size = new System.Drawing.Size(58, 13);
             this.label10.TabIndex = 30;
             this.label10.Text = "Line Width";
             // 
@@ -396,7 +383,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1006, 523);
+            this.ClientSize = new System.Drawing.Size(1002, 550);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -418,7 +405,6 @@
             this.Controls.Add(this.ClearAll);
             this.Controls.Add(this.numberOfVertices);
             this.Controls.Add(this.RegularPolygon);
-            this.Controls.Add(this.BrokenLine);
             this.Controls.Add(this.Ellipse);
             this.Controls.Add(this.TriangleThreePoints);
             this.Controls.Add(this.Color);
@@ -450,7 +436,6 @@
         private System.Windows.Forms.Button Curve;
         private System.Windows.Forms.HScrollBar hScrollBar1;
         private System.Windows.Forms.Button Ellipse;
-        private System.Windows.Forms.Button BrokenLine;
         private System.Windows.Forms.Button RegularPolygon;
         private System.Windows.Forms.NumericUpDown numberOfVertices;
         private System.Windows.Forms.Button Color;

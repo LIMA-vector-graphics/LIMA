@@ -313,11 +313,6 @@ namespace LimaVector
             _action = "rotate";
         }
 
-        private void BrokenLine_Click(object sendet, EventArgs e)
-        {
-            _action = "polygon";
-        }
-
         private void Move_Click(object sender, EventArgs e)
         {
             _action = "move";
