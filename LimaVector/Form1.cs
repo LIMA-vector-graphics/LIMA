@@ -351,7 +351,9 @@ namespace LimaVector
 
         private void Display()
         {
-            currentShape.Paint(canvas);
+            if(currentShape!= null)
+            {
+                currentShape.Paint(canvas);
             pictureBox1.Image = canvas.Bitmap;
             GC.Collect();
         }
