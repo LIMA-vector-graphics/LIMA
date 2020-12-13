@@ -23,7 +23,11 @@ namespace LimaVector.Shape
             {
                 Vertices.Add(new PointF(center.X + (int)(radiusX * Math.Cos(2 * Math.PI * i / N)),
                     center.Y + (int)(radiusY * Math.Sin(2 * Math.PI * i / N))));
-            }
+            }            
+        }
+
+        public override void Highlight(Canvas canvas)
+        {
             
         }
     }

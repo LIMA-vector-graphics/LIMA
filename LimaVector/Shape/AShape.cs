@@ -128,13 +128,15 @@ namespace LimaVector.Shape
             GravityCenter = new PointF(x / n, y / n);
         }
     
-        public void Highlight(Canvas canvas)
+        public virtual void Highlight(Canvas canvas)
         {
             for(int i = 0; i< Vertices.Count(); i++)
             {
-                Pen pen = new Pen(System.Drawing.Color.Gray, PenWidth / 2);
+                Pen pen = new Pen(Color, 2);
+                SolidBrush brush = new SolidBrush(Color.LightGray);
                 Graphics graphics = Graphics.FromImage(canvas.Bitmap);
-                graphics.DrawEllipse (pen, Vertices[i].X-5, Vertices[i].Y-5,10,10);
+                graphics.FillEllipse(brush, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);
+                graphics.DrawEllipse(pen, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);
             }
         }
 
