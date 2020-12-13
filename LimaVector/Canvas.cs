@@ -11,8 +11,8 @@ namespace LimaVector
     {
         private Bitmap _mainBitmap;
         private Bitmap _tmpBitmap;
-        public bool MODE_REPAINT = false;
-        public Bitmap bitmap
+        private bool MODE_REPAINT = false;
+        public Bitmap Bitmap
         {
             get => MODE_REPAINT ? _tmpBitmap : _mainBitmap;
         }

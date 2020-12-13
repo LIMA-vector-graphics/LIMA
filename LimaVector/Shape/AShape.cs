@@ -18,6 +18,7 @@ namespace LimaVector.Shape
         public List<PointF> Points;
         public int SelectedVerticeIndex = -1;
         public int SelectedEdgeIndex = -1;
+        public bool isHighLightOn = false;
         public bool isVerticeSelected 
         { 
             get 
@@ -94,8 +95,12 @@ namespace LimaVector.Shape
         public virtual void Paint(Canvas canvas)
         {
             Pen pen = new Pen(Color, PenWidth);
-            Graphics graphics = Graphics.FromImage(canvas.bitmap);
+            Graphics graphics = Graphics.FromImage(canvas.Bitmap);
             graphics.DrawPolygon(pen, Vertices.ToArray());
+            if (isHighLightOn)
+            {
+                Highlight(canvas);
+            }
         }
         public void Resize (float alpha)
         {
@@ -105,7 +110,7 @@ namespace LimaVector.Shape
                 PointF d = new PointF(vertice.X - GravityCenter.X, vertice.Y - GravityCenter.Y);
 
                 Vertices[i] = new PointF(GravityCenter.X + alpha * (vertice.X - GravityCenter.X),
-                    GravityCenter.Y + alpha * (vertice.Y - GravityCenter.Y));
+                GravityCenter.Y + alpha * (vertice.Y - GravityCenter.Y));
             }
         }
 
@@ -123,25 +128,14 @@ namespace LimaVector.Shape
             GravityCenter = new PointF(x / n, y / n);
         }
     
-        public void Highlight()
+        public void Highlight(Canvas canvas)
         {
             for(int i = 0; i< Vertices.Count(); i++)
             {
-                PointF vertice = Vertices[i];
-
-                //PointF vertice = new PointF(Vertices[i].X, Vertices[i].Y);
-
-                //Pen pen = new Pen(Color, PenWidth);
-                //Graphics graphics = Graphics.FromImage();
-                //graphics.DrawEllipse (pen, Vertices[i].X, Vertices[i].Y);
-
-
-                // Vertices[i].X, vertices.Y - нарисовать кружочек или квадратик 
-                // с центром в этой точке и с радиусом, равным
-                // PenWidth/2.  Graphics Серый цвет. 
+                Pen pen = new Pen(System.Drawing.Color.Gray, PenWidth / 2);
+                Graphics graphics = Graphics.FromImage(canvas.Bitmap);
+                graphics.DrawEllipse (pen, Vertices[i].X-5, Vertices[i].Y-5,10,10);
             }
-
-            // в центре фигуры тоже такую штучку
         }
 
         public void ClearSelection()

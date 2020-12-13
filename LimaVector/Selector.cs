@@ -10,13 +10,11 @@ namespace LimaVector
 {
     public class Selector
     {
-        Bitmap _bitmap;
         List<AShape> _shapes;
 
-        public Selector(Bitmap bitmap, List<Shape.AShape> shapes)
+        public Selector(List<AShape> shapes)
         {
             _shapes = shapes;
-            _bitmap = bitmap;
         }
 
         public AShape Select(PointF point)
@@ -34,7 +32,7 @@ namespace LimaVector
                     {
                         if (point.Belongs(shape.Vertices[i], previousVertice, shape.PenWidth))
                         {
-                            shape.Highlight();
+                            shape.isHighLightOn = true;
                             shape.SelectedEdgeIndex = i;
                             return shape;
                         }
@@ -60,7 +58,7 @@ namespace LimaVector
                     {
                         if (shape.Vertices[i].Equals(point, shape.PenWidth))
                         {
-                            shape.Highlight();
+                            shape.isHighLightOn = true;
                             shape.SelectedVerticeIndex = i;
                             return shape;
                         }

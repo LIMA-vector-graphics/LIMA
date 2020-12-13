@@ -62,7 +62,7 @@ namespace LimaVector.Shape
         // линия или две лиинии в зависимости от кол-ва вершин
        
             Pen pen = new Pen(Color, PenWidth);
-            Graphics graphics = Graphics.FromImage(canvas.bitmap);
+            Graphics graphics = Graphics.FromImage(canvas.Bitmap);
 
                 switch (NumberOfVertices)
                 {

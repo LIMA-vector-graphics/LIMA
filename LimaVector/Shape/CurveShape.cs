@@ -27,7 +27,7 @@ namespace LimaVector.Shape
         {
             NumberOfVertices = Vertices.Count();
             Pen pen = new Pen(Color,PenWidth);
-            Graphics graphics = Graphics.FromImage(canvas.bitmap);
+            Graphics graphics = Graphics.FromImage(canvas.Bitmap);
             graphics.DrawLine(pen,Vertices.LastOrDefault(),Vertices[NumberOfVertices-2]);
         }
     }
