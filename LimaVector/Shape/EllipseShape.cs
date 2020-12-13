@@ -9,9 +9,9 @@ namespace LimaVector.Shape
 {
     public class EllipseShape : ADragShape
     {
+        int N = 36;
         override public void UpdateVertices(PointF startPoint, PointF endPoint)
         {
-            int N = 360;
             Vertices = new List<PointF>();
             GravityCenter = new PointF((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y)/2);
             PointF center = new PointF((startPoint.X + endPoint.X) / 2, (startPoint.Y + endPoint.Y) / 2);
@@ -28,7 +28,15 @@ namespace LimaVector.Shape
 
         public override void Highlight(Canvas canvas)
         {
-            
+            int[] footing = new int[] { 0, N / 4, N / 2, 3 * N / 4 };
+            foreach (int i in footing)
+            {
+                Pen pen = new Pen(Color, 2);
+                SolidBrush brush = new SolidBrush(Color.LightGray);
+                Graphics graphics = Graphics.FromImage(canvas.Bitmap);
+                graphics.FillEllipse(brush, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);
+                graphics.DrawEllipse(pen, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);
+            }
         }
     }
 }
