@@ -140,6 +140,7 @@ namespace LimaVector.Shape
 
         public void ClearSelection()
         {
+            isHighLightOn = false;
             SelectedVerticeIndex = -1;
             SelectedEdgeIndex = -1;
         }

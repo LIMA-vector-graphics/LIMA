@@ -26,6 +26,7 @@ namespace LimaVector.Shape
                 new PointF(endPoint.X, startPoint.Y)
             };
 
+            UpdateCenter();
         }
 
         //public override bool Equals(object obj)
