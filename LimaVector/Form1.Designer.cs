@@ -40,6 +40,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.Load_file = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.Square = new System.Windows.Forms.Button();
             this.Rectangle = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfVertices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -125,9 +125,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(545, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 15);
+            this.label5.Size = new System.Drawing.Size(72, 15);
             this.label5.TabIndex = 23;
-            this.label5.Text = "Select Vertice";
+            this.label5.Text = "Select Point";
             // 
             // label6
             // 
@@ -164,6 +164,15 @@
             this.label9.Size = new System.Drawing.Size(36, 15);
             this.label9.TabIndex = 29;
             this.label9.Text = "Color";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(111, 60);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 15);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Line Width";
             // 
             // Load_file
             // 
@@ -356,10 +365,12 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pictureBox1.BackgroundImage = global::LimaVector.Properties.Resources.razlinovka;
+            this.pictureBox1.Image = global::LimaVector.Properties.Resources.razlinovka;
             this.pictureBox1.Location = new System.Drawing.Point(108, 83);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(881, 453);
+            this.pictureBox1.Size = new System.Drawing.Size(880, 450);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -368,15 +379,6 @@
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(111, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 15);
-            this.label10.TabIndex = 30;
-            this.label10.Text = "Line Width";
             // 
             // Form1
             // 
