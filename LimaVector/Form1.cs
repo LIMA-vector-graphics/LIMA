@@ -256,7 +256,7 @@ namespace LimaVector
             fabric = new EllipseFabric();
         }
 
-        private void Polygon_Click(object sender, EventArgs e)
+        private void Polygon__Click(object sender, EventArgs e)
         {
             _action = "polygon";
             fabric = new PolygonFabric();
@@ -365,5 +365,7 @@ namespace LimaVector
         {
 
         }
+
+      
     }
 }

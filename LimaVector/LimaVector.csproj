@@ -89,6 +89,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -102,6 +103,72 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ellips.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\poly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trian1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pen7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pen8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fill_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\color_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SelectVer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\poly7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rotate7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resize7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resize71.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pen71.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\load3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fill7.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
