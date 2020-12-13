@@ -91,7 +91,7 @@
             // 
             // numberOfVertices
             // 
-            this.numberOfVertices.Location = new System.Drawing.Point(34, 395);
+            this.numberOfVertices.Location = new System.Drawing.Point(34, 393);
             this.numberOfVertices.Name = "numberOfVertices";
             this.numberOfVertices.Size = new System.Drawing.Size(58, 20);
             this.numberOfVertices.TabIndex = 10;
@@ -208,7 +208,7 @@
             // Polygon_
             // 
             this.Polygon_.Image = global::LimaVector.Properties.Resources.poly7;
-            this.Polygon_.Location = new System.Drawing.Point(34, 478);
+            this.Polygon_.Location = new System.Drawing.Point(34, 476);
             this.Polygon_.Margin = new System.Windows.Forms.Padding(2);
             this.Polygon_.Name = "Polygon_";
             this.Polygon_.Size = new System.Drawing.Size(60, 50);
@@ -271,7 +271,7 @@
             // RegularPolygon
             // 
             this.RegularPolygon.Image = global::LimaVector.Properties.Resources.poly;
-            this.RegularPolygon.Location = new System.Drawing.Point(32, 338);
+            this.RegularPolygon.Location = new System.Drawing.Point(34, 336);
             this.RegularPolygon.Margin = new System.Windows.Forms.Padding(4);
             this.RegularPolygon.Name = "RegularPolygon";
             this.RegularPolygon.Size = new System.Drawing.Size(60, 50);
@@ -282,7 +282,7 @@
             // Ellipse
             // 
             this.Ellipse.Image = global::LimaVector.Properties.Resources.ellips;
-            this.Ellipse.Location = new System.Drawing.Point(34, 227);
+            this.Ellipse.Location = new System.Drawing.Point(34, 226);
             this.Ellipse.Name = "Ellipse";
             this.Ellipse.Size = new System.Drawing.Size(60, 50);
             this.Ellipse.TabIndex = 7;
@@ -292,7 +292,7 @@
             // TriangleThreePoints
             // 
             this.TriangleThreePoints.Image = global::LimaVector.Properties.Resources.trian1;
-            this.TriangleThreePoints.Location = new System.Drawing.Point(34, 423);
+            this.TriangleThreePoints.Location = new System.Drawing.Point(34, 421);
             this.TriangleThreePoints.Margin = new System.Windows.Forms.Padding(2);
             this.TriangleThreePoints.Name = "TriangleThreePoints";
             this.TriangleThreePoints.Size = new System.Drawing.Size(60, 50);
@@ -325,7 +325,7 @@
             // Triangel
             // 
             this.Triangel.Image = global::LimaVector.Properties.Resources.trian;
-            this.Triangel.Location = new System.Drawing.Point(34, 282);
+            this.Triangel.Location = new System.Drawing.Point(34, 281);
             this.Triangel.Margin = new System.Windows.Forms.Padding(2);
             this.Triangel.Name = "Triangel";
             this.Triangel.Size = new System.Drawing.Size(60, 50);

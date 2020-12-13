@@ -26,9 +26,7 @@ namespace LimaVector.Shape
         public override void Paint(Canvas canvas)
         {
             NumberOfVertices = Vertices.Count();
-            Pen pen = new Pen(Brushes.Black, 16); 
-            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+            Pen pen = new Pen(Color,PenWidth);
             Graphics graphics = Graphics.FromImage(canvas.bitmap);
             graphics.DrawLine(pen,Vertices.LastOrDefault(),Vertices[NumberOfVertices-2]);
         }

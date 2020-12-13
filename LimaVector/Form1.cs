@@ -38,7 +38,7 @@ namespace LimaVector
             mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
 
-            pen = new Pen(System.Drawing.Color.Black, 16);
+            pen = new Pen(System.Drawing.Color.Black, 9);
             pictureBox1.Image = mainBitmap;
             numberOfVertices.Value = 5;
         }
