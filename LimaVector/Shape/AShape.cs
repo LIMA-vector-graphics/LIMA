@@ -12,7 +12,6 @@ namespace LimaVector.Shape
         public List<PointF> Vertices;
         public PointF GravityCenter;
         public Color Color;
-        public int Width;
         public int PenWidth;
         public int NumberOfVertices;
         public List<PointF> Points;
