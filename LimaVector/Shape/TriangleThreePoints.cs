@@ -57,10 +57,8 @@ namespace LimaVector.Shape
            
 
         }
-        public override void Paint(Canvas canvas) //PointF location)
+        public override void Paint(Canvas canvas)
         {
-        // линия или две лиинии в зависимости от кол-ва вершин
-       
             Pen pen = new Pen(Color, PenWidth);
             Graphics graphics = Graphics.FromImage(canvas.Bitmap);
 
@@ -71,15 +69,11 @@ namespace LimaVector.Shape
                         graphics.DrawLine(pen, Vertices[0], Vertices[1]);
                         break;
                     case 2:
-                        graphics.DrawLine(pen, Vertices[0], Vertices[1]);
-                        graphics.DrawLine(pen, Vertices[1], Vertices[2]);
-                        graphics.DrawLine(pen, Vertices[2], Vertices[0]);
-                    break;
-                    case 3:
-                        graphics.DrawLine(pen, Vertices[0], Vertices[1]);
-                        graphics.DrawLine(pen, Vertices[1], Vertices[2]);
-                        graphics.DrawLine(pen, Vertices[2], Vertices[0]);
-                    break;
+                        graphics.DrawPolygon(pen, Vertices.ToArray());
+                        break;
+                    case 3: // возможно можно убрать
+                        graphics.DrawPolygon(pen, Vertices.ToArray());
+                        break;
             }
         }
     }

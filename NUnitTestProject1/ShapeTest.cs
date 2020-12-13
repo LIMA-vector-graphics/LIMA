@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
-using LimaVector.Fabrics;
+using LimaVector.Factories;
 using LimaVector.Shape;
-
 using System.Drawing;
 using System.Collections.Generic;
 using System.Collections;
@@ -14,8 +13,8 @@ namespace NUnitTestProject1
         [Test]
         public void SSCreateTest() // тест на фабрику
         {
-            SquareFabric squareFabric = new SquareFabric();
-            AShape actual = squareFabric.CreateShape();
+            SquareFactory squareFactory = new SquareFactory();
+            AShape actual = squareFactory.CreateShape();
 
             //actual.GetType();           // метод объекта возвращает тип данных
             //typeof(SquareShape);                   // сюда передается конкретный тип данных ,возвращает тип данных,  и можно сравнивать с гет тайп

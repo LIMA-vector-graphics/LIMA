@@ -1,4 +1,4 @@
-using LimaVector.Fabrics;
+using LimaVector.Factories;
 using LimaVector.Shape;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace LimaVector
         List<AShape> shapes;
         string _action = "";
         AShape currentShape;
-        IFabric fabric;
+        IFactory factory;
 
         public Form1()
         {
@@ -28,11 +28,8 @@ namespace LimaVector
         private void Form1_Load(object sender, EventArgs e)
         {
             shapes = new List<AShape>();
-           
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
-
-            pen = new Pen(System.Drawing.Color.Black, 9);
-         
+            pen = new Pen(System.Drawing.Color.Black, 1);
             numberOfVertices.Value = 5;
         }
 
@@ -110,15 +107,13 @@ namespace LimaVector
             point = e.Location;
             mD = true;
 
-
-
             if (_action == "paint")
 
             {
-                if (!(currentShape is TriangleThreePoints) || !(fabric is TriangleThreePointsFabric) ||
+                if (!(currentShape is TriangleThreePoints) || !(factory is TriangleThreePointsFactory) ||
                     ((currentShape is TriangleThreePoints) && currentShape.NumberOfVertices == 3))                     
                 {
-                    currentShape = fabric.CreateShape();
+                    currentShape = factory.CreateShape();
                     currentShape.Color = pen.Color;
                     currentShape.PenWidth = (int)pen.Width;
                 }
@@ -143,7 +138,6 @@ namespace LimaVector
             }
             if (_action == "select")
             {
-
                 Selector selector = new Selector(shapes);
                 selector.ClearSelection();
                 currentShape = selector.SelectVertice(e.Location);
@@ -165,7 +159,6 @@ namespace LimaVector
             {
 
                 mD = false;
-                //shapes.Add(currentShape);
 
                 if (currentShape is TriangleThreePoints)
                 {
@@ -212,32 +205,32 @@ namespace LimaVector
         private void Rectangle_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new RectangleFabric();
+            factory = new RectangleFactory();
         }
 
         private void Square_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new SquareFabric();
+            factory = new SquareFactory();
         }
 
         private void Line_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new LineFabric();
+            factory = new LineFactory();
         }
 
         private void Triangel_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new TriangleFabric();
+            factory = new TriangleFactory();
         }
 
         private void Curve_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new CurveFabric();
-            currentShape = fabric.CreateShape();
+            factory = new CurveFactory();
+            currentShape = factory.CreateShape();
         }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -248,37 +241,37 @@ namespace LimaVector
         private void Ellipse_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new EllipseFabric();
+            factory = new EllipseFactory();
         }
 
         private void Polygon__Click(object sender, EventArgs e)
         {
             _action = "polygon";
-            fabric = new PolygonFabric();
+            factory = new PolygonFactory();
         }
 
         private void Polygon_Click_1(object sender, EventArgs e)
         {
             _action = "Polygon";
-            fabric = new PolygonFabric();
+            factory = new PolygonFactory();
         }
 
         private void RegularPolygon_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new RegularPolygonFabric(NumberOfVertices);
+            factory = new RegularPolygonFactory(NumberOfVertices);
         }
 
         private void numberOfVertices_ValueChanged(object sender, EventArgs e)
         {
             NumberOfVertices = Convert.ToInt32(numberOfVertices.Value);
-            fabric = new RegularPolygonFabric(NumberOfVertices);
+            factory = new RegularPolygonFactory(NumberOfVertices);
         }
 
         private void TriangleThreePoints_Click(object sender, EventArgs e)
         {
             _action = "paint";
-            fabric = new TriangleThreePointsFabric();
+            factory = new TriangleThreePointsFactory();
         }
 
         private void Color_Click(object sender, EventArgs e)
