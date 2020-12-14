@@ -17,6 +17,8 @@ namespace LimaVector.Shape
         public int SelectedVerticeIndex = -1;
         public int SelectedEdgeIndex = -1;
         public bool isHighLightOn = false;
+        public bool isFilled = false;
+
         public bool isVerticeSelected 
         { 
             get 
@@ -63,14 +65,14 @@ namespace LimaVector.Shape
                 Vertices[i] = new PointF(vertice.X+ delta.X, vertice.Y + delta.Y);
             }
         }
-        public void MoveVertice(PointF delta) // moving vertice with certain index
+        public virtual void MoveVertice(PointF delta) // moving vertice with certain index
         {
             int index = SelectedVerticeIndex;
             Vertices[index] = new PointF(Vertices[index].X + delta.X, Vertices[index].Y + delta.Y);
             UpdateCenter();
         }
 
-        public void MoveEdge(PointF delta) // moving vertice with certain index
+        public virtual void MoveEdge(PointF delta) // moving vertice with certain index
         {
             int index = SelectedEdgeIndex;
             NumberOfVertices = Vertices.Count();
@@ -95,10 +97,16 @@ namespace LimaVector.Shape
             Pen pen = new Pen(Color, PenWidth);
             Graphics graphics = Graphics.FromImage(canvas.Bitmap);
             graphics.DrawPolygon(pen, Vertices.ToArray());
+            if (isFilled)
+            {
+                SolidBrush fillBrush = new SolidBrush(Color);
+                graphics.FillPolygon(fillBrush, Vertices.ToArray());
+            }
             if (isHighLightOn)
             {
                 Highlight(canvas);
             }
+
         }
         public void Resize (float alpha)
         {
@@ -134,8 +142,14 @@ namespace LimaVector.Shape
                 SolidBrush brush = new SolidBrush(Color.LightGray);
                 Graphics graphics = Graphics.FromImage(canvas.Bitmap);
                 graphics.FillEllipse(brush, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);
-                graphics.DrawEllipse(pen, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);
+                graphics.DrawEllipse(pen, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);       
             }
+        }
+
+        public virtual void Fill(Color color)
+        {
+            isFilled = true;
+            Color = color;
         }
 
         public void ClearSelection()

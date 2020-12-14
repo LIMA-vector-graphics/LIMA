@@ -183,21 +183,7 @@ namespace LimaVector
         {
             if (_action == "Polygon")
             {
-                //if (polygon.NumberOfVertices == 0)
-                //{
-                    //polygon.Vertices.Add(e.Location);
 
-                    //graphics = Graphics.FromImage(mainBitmap);
-                    //polygon.NumberOfVertices++;
-                //}
-                //else
-                //{
-                    //graphics = Graphics.FromImage(mainBitmap);
-                    //graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-                    //polygon.NumberOfVertices++;
-                    //polygon.Vertices.Add(e.Location);//записали в массив новую точку 
-                    //pictureBox1.Image = mainBitmap;
-                //}
             }
         }
 
@@ -249,12 +235,6 @@ namespace LimaVector
             factory = new PolygonFactory();
         }
 
-        private void Polygon_Click_1(object sender, EventArgs e)
-        {
-            _action = "Polygon";
-            factory = new PolygonFactory();
-        }
-
         private void RegularPolygon_Click(object sender, EventArgs e)
         {
             _action = "paint";
@@ -283,12 +263,7 @@ namespace LimaVector
         {
             if (_action == "polygon")
             {
-                //graphics = Graphics.FromImage(mainBitmap);
-                //graphics.DrawLine(pen, polygon.Vertices[polygon.NumberOfVertices - 1], e.Location);
-                //graphics.DrawLine(pen, polygon.Vertices[0], e.Location);
-                //polygon.NumberOfVertices = 0;
-                //polygon.Vertices.Clear();
-                //pictureBox1.Image = mainBitmap;
+
             }
 
         }
@@ -351,5 +326,10 @@ namespace LimaVector
             GC.Collect();
         }
 
+        private void Fill_Click(object sender, EventArgs e)
+        {
+            currentShape.Fill(pen.Color);
+            Display();
+        }
     }
 }

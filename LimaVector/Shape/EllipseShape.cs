@@ -38,5 +38,14 @@ namespace LimaVector.Shape
                 graphics.DrawEllipse(pen, Vertices[i].X - PenWidth, Vertices[i].Y - PenWidth, 2 * PenWidth, 2 * PenWidth);
             }
         }
+
+        public override void MoveEdge(PointF delta)
+        {
+
+        }
+        public override void MoveVertice(PointF delta)
+        {
+
+        }
     }
 }
