@@ -54,7 +54,7 @@ namespace LimaVector.Shape
                 NumberOfVertices = 3;
                 Vertices[2] = location; // оказывается две точки с одинаковыми координатами
             }
-           
+            UpdateCenter();
 
         }
         public override void Paint(Canvas canvas)
