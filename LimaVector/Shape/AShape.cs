@@ -14,7 +14,6 @@ namespace LimaVector.Shape
         public Color Color;
         public int PenWidth;
         public int NumberOfVertices;
-        public List<PointF> Points;
         public int SelectedVerticeIndex = -1;
         public int SelectedEdgeIndex = -1;
         public bool isHighLightOn = false;
