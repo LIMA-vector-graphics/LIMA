@@ -328,7 +328,8 @@ namespace LimaVector
 
         private void Fill_Click(object sender, EventArgs e)
         {
-            currentShape.Fill(pen.Color);
+            if(currentShape != null)
+                currentShape.Fill(pen.Color);
             Display();
         }
     }
